@@ -391,11 +391,11 @@ function setIframeSrc(url, button) {
 
 
 function getPrimarySrc() {
-    return 'https://coolubg.github.io/coolubg-list/';
+    return 'https://coolubg2.github.io/coolubg-list/';
 }
 
 function getBackupSrc() {
-    return 'https://coolubg2.github.io/coolubg-list/';
+    return 'https://coolubg.github.io/coolubg-list/';
 }
 
 function getGameVariable() {
