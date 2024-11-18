@@ -116,7 +116,7 @@ checkAndUpdateCustomisationValues();
 //});
 
 function loadIframe() {
-    var iframeSrc = 'https://coolubg.github.io/coolubg-list/'; // VERY IMPORTANT THIS IS WHERE THE URL FOR THE GAMES IS KEPT SO IF YOU WANT TO USE YOUR OWN WEBSITE THEN CHANGE THIS LINK!
+    var iframeSrc = 'https://coolubg2.github.io/coolubg-list/'; // VERY IMPORTANT THIS IS WHERE THE URL FOR THE GAMES IS KEPT SO IF YOU WANT TO USE YOUR OWN WEBSITE THEN CHANGE THIS LINK!
   //  var gameVariable = getGameVariable();
     iframeSrc += gameName;
 
