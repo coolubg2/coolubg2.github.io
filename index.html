@@ -246,7 +246,7 @@
     }
 
     .game-list {
-      font-family: "M Plus Rounded 1c", sans-serif;
+      font-family: "Nunito", sans-serif;
       font-weight: bold;
       text-align: center;
       justify-content: center;
@@ -288,7 +288,7 @@
 <body>
   <div id="navbar-container"></div>
   <!--<div class="3" style="top: 0; height: 11vh; width: 100%; background-color: #58aafc; position: absolute;"></div>-->
-  <div class="carousel-spacer" style="margin-top: 92vh;"></div>
+  <div class="carousel-spacer" style="margin-top: 92vh"></div>
   <!--<div class="2" style="position: fixed; background-color: blue; z-index: 99999999; height: 1vh; width: 1vw; margin-top: 58.5vh;"></div>
  <div class="2" style="position: fixed; background-color: red; z-index: 99999999; height: 1vh; width: 1vw; margin-top: 66vh;"></div>
  div class="2" style="position: aboslute; background-color: blue; z-index: 99999999; height: 100vh; width: 10vw;"></div>-->
@@ -316,9 +316,9 @@
     <div class="slick-carousel">
       <div class="carousel-item">
         <div class="image-container">
-          <a class="info" href="/games/red-square-game.html"> <!--Class info means small info text-->
-            <img src="/images/games-512/red-square-game.png" alt="flOw">
-            <p>Red Square Game</p>
+          <a class="info" href="/games/?cube-stack-3d"> <!--Class info means small info text-->
+            <img src="/images/games-512/cube-stack-3d.png" alt="Cube Stack 3D">
+            <p>Cube Stack 3D</p>
             <span class="info">
               <p>Recently added</p>
             </span>
@@ -327,18 +327,18 @@
       </div>
       <div class="carousel-item">
         <div class="image-container">
-          <a class="info" href="/games/polytrack.html">
-            <img src="/images/games-512/polytrack.png" alt="Polytrack">
-            <p>Polytrack v0.4.1</p>
+          <a class="info" href="/games/?mirrors-edge-2d">
+            <img src="/images/games-512/mirrors-edge-2d.png" alt="mirrors-edge-2d">
+            <p>Mirror's Edge 2D</p>
             <span class="info">
-              <p>Rank #1 in Popularity</p>
+              <p>Recently Added</p>
             </span>
           </a>
         </div>
       </div>
       <div class="carousel-item">
         <div class="image-container">
-          <a class="info" href="/games/among-us-online.html">
+          <a class="info" href="/games/?among-us-online">
             <img src="/images/games-512/among-us-online.png" alt="Among Us Online">
             <p>Among Us Online</p>
             <span class="info">
@@ -349,7 +349,7 @@
       </div>
       <div class="carousel-item">
         <div class="image-container">
-          <a class="info" href="/games/bitlife.html">
+          <a class="info" href="/games/?bitlife">
             <img src="/images/games-512/bitlife.png" alt="Bitlife">
             <p>Bitlife</p>
             <span class="info">
@@ -360,7 +360,7 @@
       </div>
       <div class="carousel-item">
         <div class="image-container">
-          <a class="info" href="/games/slope.html">
+          <a class="info" href="/games/?slope">
             <img src="/images/games-512/slope.png" alt="Slope">
             <p>Slope</p>
             <span class="info">
@@ -371,11 +371,11 @@
       </div>
       <div class="carousel-item">
         <div class="image-container">
-          <a class="info" href="/games/celeste-classic-2-lanis-treck.html">
-            <img src="/images/games-512/celeste-classic-2-lanis-treck.png" alt="Celeste Classic 2">
-            <p>Celeste Classic 2</p>
+          <a class="info" href="/games/?tomb-of-the-mask">
+            <img src="/images/games-512/tomb-of-the-mask.png" alt="Tomb of the Mask">
+            <p>Tomb of the Mask</p>
             <span class="info">
-              <p>Recently added</p>
+              <p>Classic!</p>
             </span>
           </a>
         </div>
@@ -489,8 +489,8 @@
     <!-- Left section -->
     <div class="left-section">
       <div class="buttons">
-        <a href="https://linktr.ee/coolbugubg">
-          <button class="github-btn">Github & Other Websites</button>
+        <a href="https://github.com/CoolUBG2/">
+          <button class="github-btn">Github</button>
         </a>
         <a href="/changelog.html">
           <button class="github-btn">Changelog</button>
@@ -500,9 +500,9 @@
         this website is so cool
         <br><br>
         Last Update:
-        <a href="/changelog.html">24/02/2025</a>
+        <a href="/changelog.html">03/05/2025</a>
         <br>
-        Swords and Sandals Crusader!<br>Red Sqaure Game<br>SuperTux Classic works now too!
+        Cube Stack 3D!<br>Red Sqaure Game<br>Game URLs are queries now!
       </p>
     </div>
 
@@ -589,8 +589,6 @@
           Submit a theme
         </a>
         <br>
-        <a href="/issues.html">
-          Report an Issue
         </a>
       </p>
     </div>
@@ -612,7 +610,7 @@
       /* Set container width */
       height: 22vw;
       /* Use vw instead of vh for consistent scaling */
-      font-family: 'M Plus Rounded 1c', sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-weight: bold;
       box-sizing: border-box;
       /* Include padding and border in the size */
@@ -679,11 +677,10 @@
       background-color: var(--secondary-color);
       padding: 0.5vw 1vw;
       /* Responsive padding */
-      border-radius: 0.5vw;
       /* Rounded corners */
       color: var(--primary-color);
       font-weight: normal;
-      outline: var(--primary-color) solid 0.3vw;
+      outline: var(--primary-color) solid 4px;
       /* Consistent outline */
       border: none;
       cursor: pointer;
@@ -707,9 +704,8 @@
     .github-btn:hover {
       background-color: var(--primary-color);
       color: var(--secondary-color);
-      transform: scale(1.05);
       /* Subtle hover effect */
-      transition: transform 0.2s ease, background-color 0.2s ease;
+      transition: background-color 0.15s ease-out;
     }
 
 
@@ -896,7 +892,7 @@
         color: var(--primary-color);
         border-radius: 5px;
         border: none;
-        font-family: 'M Plus Rounded 1c', sans-serif;
+        font-family: 'Nunito', sans-serif;
         font-weight: bold;
       }
 
@@ -919,7 +915,7 @@
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
         /* Light shadow */
         z-index: 5;
-        font-family: "M Plus Rounded 1c", sans-serif;
+        font-family: "Nunito", sans-serif;
         font-weight: bold;
         margin-top: -6px;
       }
@@ -1085,7 +1081,7 @@ async function generatePageList() {
       <div data-date="${page.date || 'unknown'}">
         <div class="suggest-game" onmouseover="highlightImageL('suggest-imgL${index + 1}', 'suggest-textL${index + 1}')" 
           onmouseout="removeHighlightL('suggest-imgL${index + 1}', 'suggest-textL${index + 1}')">
-          <a href="games/${page.name}.html">
+          <a href="games/?${page.name}.html">
             <div class="suggest-text-back-container" style="position: absolute; margin: 0.6vh; width: 16.8vw; height: calc(20.3vw * 9 / 16); overflow: hidden; z-index: 2;">
               <div class="suggest-text-back" style="position: absolute; width: 300%; height: 300%; left: -5vw; top: 0vw; background-color: black; opacity: 0;"></div>
             </div>
@@ -1116,7 +1112,7 @@ async function generatePageList() {
       <div data-date="${page.date || 'unknown'}">
         <div class="suggest-game" onmouseover="highlightImageL('suggest-imgL${index + 1}', 'suggest-textL${index + 1}')" 
           onmouseout="removeHighlightL('suggest-imgL${index + 1}', 'suggest-textL${index + 1}')">
-          <a href="games/${page.name}.html">
+          <a href="games/?${page.name}">
             <div class="suggest-text-back-container" style="position: absolute; margin: 0.6vh; width: 16.8vw; height: calc(20.3vw * 9 / 16); overflow: hidden; z-index: 2;">
               <div class="suggest-text-back" style="position: absolute; width: 300%; height: 300%; left: -5vw; top: 0vw; background-color: black; opacity: 0;"></div>
             </div>

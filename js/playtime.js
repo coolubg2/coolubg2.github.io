@@ -24,18 +24,18 @@ async function PlogPlaytime() {
     const currentUrl = window.location.href;
     let pageName, nonHashedPageName;
     
-    if (currentUrl.includes("#")) {
-        pageName = currentUrl.split("#").pop();
-        nonHashedPageName = currentUrl.split("#")[0].match(/\/games\/(.*?)\.html/);
-        nonHashedPageName = nonHashedPageName ? nonHashedPageName[1] : "unknown";
-    } else if (currentUrl.includes("/games/")) {
-        const match = currentUrl.match(/\/games\/(.*?)\.html/);
-        pageName = match ? match[1] : "unknown";
+    if (currentUrl.includes("/games")) {
+        if (currentUrl.includes("#")) {
+            pageName = currentUrl.split("#").pop();
+        } else {
+            const queryPart = currentUrl.split("?")[1];
+            pageName = queryPart ? queryPart : "unknown";
+        }
         nonHashedPageName = pageName;
     } else {
         pageName = typeof playtimeName !== "undefined" ? playtimeName : "unknown";
         nonHashedPageName = pageName;
-    }
+    }    
 
     const now = new Date();
     const timestamp = now.toLocaleString("en-GB", {

@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const relatedGameLimit = 5;  // You can change this to 200 or whatever number you want
 
     // Get the current page name from the URL
-    const currentPageURL = window.location.pathname;
-    const pageName = currentPageURL.split('/games/')[1]?.split('.html')[0];
-
+    const currentPageURL = window.location.search;
+    const pageName = currentPageURL.split('?')[1];
+    
     // Find the page entry from the pagesData array
     const pageEntry = pagesData.find(page => page.name === pageName);
     const category = pageEntry?.category || [];
@@ -85,12 +85,12 @@ document.addEventListener('DOMContentLoaded', function () {
         // Display only the top 'relatedGameLimit' games
         sortedGames.slice(0, relatedGameLimit).forEach((game, index) => {
             const link = document.createElement('a');
-            link.href = `/games/${game.name}.html`;
+            link.href = `/games/?${game.name}`;
             link.classList.add('related-game'); // Add a class for styling
 
             // Create an image element
             const image = document.createElement('img');
-            image.src = `/images/games/${game.name}.png`;
+            image.src = `/images/games-256/${game.name}.png`;
             image.alt = game.formatted_Name;
 
             // Set CSS styles to ensure 16:9 aspect ratio

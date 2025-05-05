@@ -62,7 +62,7 @@ async function generatePageListONLINE() {
           <div class="suggest-game" 
               onmouseover="highlightImageP('suggest-imgPO${index + 1}', 'suggest-textPO${index + 1}')" 
               onmouseout="removeHighlightP('suggest-imgPO${index + 1}', 'suggest-textPO${index + 1}')">
-              <a href="games/${page.name}.html">
+              <a href="games/?${page.name}">
                   <div class="suggest-text-back-container" style="position: absolute; margin: 0.6vh; width: 16.8vw; height: calc(20.3vw * 9 / 16); overflow: hidden; z-index: 2;">
                       <div class="suggest-text-back" style="position: absolute; width: 300%; height: 300%; left: -5vw; top: 0vw; background-color: black; opacity: 0;"></div>
                   </div>
@@ -88,7 +88,7 @@ async function generatePageListONLINE() {
           <div class="suggest-game" 
               onmouseover="highlightImageP('suggest-imgPO${index + 1}', 'suggest-textPO${index + 1}')" 
               onmouseout="removeHighlightP('suggest-imgPO${index + 1}', 'suggest-textPO${index + 1}')">
-              <a href="games/${page.name}.html">
+              <a href="games/?${page.name}">
                   <div class="suggest-text-back-container" style="position: absolute; margin: 0.6vh; width: 16.8vw; height: calc(20.3vw * 9 / 16); overflow: hidden; z-index: 2;">
                       <div class="suggest-text-back" style="position: absolute; width: 300%; height: 300%; left: -5vw; top: 0vw; background-color: black; opacity: 0;"></div>
                   </div>

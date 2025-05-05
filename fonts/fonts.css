@@ -1,7 +1,7 @@
 @font-face {
-  font-family: "M Plus Rounded 1c"; /* ITS ACTUALLY NUNITO https://fonts.google.com/specimen/Nunito | old font sometimes didnt underline on firefox*/
+  font-family: "Nunito";
   font-weight: 800;
-  src: url(/fonts/Nunito-VariableFont_wght.ttf)
+  src: url(/fonts/Nunito.ttf);
 }
 
 

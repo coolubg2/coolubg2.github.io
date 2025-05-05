@@ -3,13 +3,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const STORE_NAME = "playtimeLogs";
     const DB_VERSION = 1;
 
-    const currentPageURL = window.location.pathname;
-    const pageName = currentPageURL.split('/games/')[1]?.split('.html')[0];
+    const currentPageURL = window.location.search;
+    const pageName = currentPageURL.split('?')[1];
 
     if (pageName) {
         const pageEntry = pagesData.find(page => page.name === pageName);
 
         const name = pageEntry?.formatted_Name || pageName;
+
+        // Set dynamic page title
+        document.title = name + " - CoolUBG | Cool Unblocked Games";
+        
+        var description = pageEntry.description;
 
         const categories = pageEntry?.category || ["None"];
         const categoryHTML = categories.join(", "); 
@@ -66,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 <p>
                     ${description}<br><br>
-                    ${releaseDate.match(/-/g)?.length === 2 ? `${name} was released on the ${formattedRelease} created by ${authors.join(', ')}` : ''}
+                    ${releaseDate.match(/-/g)?.length === 2 ? `${name} was released on the ${formattedRelease} and was created by ${authors.join(', ')}.` : ''}
                 </p>
             </div>
 

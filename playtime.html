@@ -162,7 +162,7 @@
         const listItemsHTML = gamesWithPlaytime.map(game => {
           const playtimeText = game.playtime === 0 ? "Never Played" : (game.playtime === 1 ? "1 minute" : `${game.playtime} minutes`);
           return `
-            <a href="/games/${game.gameId}.html"> 
+            <a href="/games/index.html?${game.gameId}"> 
               <li class="game-item">
                 <img src="/images/games/${game.gameId}.png" alt="${game.formattedName} Image">
                 <span class="game-name">${game.formattedName}</span>

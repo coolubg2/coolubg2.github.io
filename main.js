@@ -12,6 +12,8 @@ function insertHTML() {
 
 insertHTML();
 
+
+
 // bad method :) - checks whether primary colour has a value, if it doesnt then it resets all customisation values.
 function setDefaultValuesIfPrimaryColorMissing() {
     const customisationData = localStorage.getItem('customisation');
@@ -49,22 +51,17 @@ setDefaultValuesIfPrimaryColorMissing();
 //document.addEventListener('DOMContentLoaded', function() {
 //  setDefaultLocalStorageValues();
 //});
-function loadIframe() {
+//function loadIframe() {
     // If gameName is "none", stop the function from executing
 
-    var iframeSrc = 'https://coolubg2.github.io/coolubg-list/'; // VERY IMPORTANT THIS IS WHERE THE URL FOR THE GAMES IS KEPT SO IF YOU WANT TO USE YOUR OWN WEBSITE THEN CHANGE THIS LINK!
+    //var iframeSrc = 'https://coolubg.github.io/coolubg-list/'; // VERY IMPORTANT THIS IS WHERE THE URL FOR THE GAMES IS KEPT SO IF YOU WANT TO USE YOUR OWN WEBSITE THEN CHANGE THIS LINK!
     // var gameVariable = getGameVariable();
-    iframeSrc += gameName;
+    //iframeSrc += gameName;
 
-    var iframe = document.getElementById('game-iframe');
+    //var iframe = document.getElementById('game-iframe');
 
-    // Directly include the Ruffle script URL
-    var ruffleScript = document.createElement('script');
-    ruffleScript.src = "https://unpkg.com/@ruffle-rs/ruffle";
-    document.head.appendChild(ruffleScript);
-
-    iframe.src = iframeSrc; // Set iframe source directly
-}
+  //  iframe.src = iframeSrc;
+//}
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -106,6 +103,14 @@ if (titlebarContainer) {
             titlebarContainer.innerHTML = data;
 
             // Set the title if `titleText` is defined
+
+            const query = window.location.search;
+            const queryParam = query.substring(1);  
+
+            const pageEntry = pagesData.find(page => page.name === queryParam);
+
+            const titleText = pageEntry.formatted_Name;
+
             const titleElement = document.getElementById('title-text');
             if (titleElement && typeof titleText !== 'undefined') {
                 titleElement.textContent = titleText;
@@ -124,7 +129,7 @@ if (titlebarContainer) {
             }
 
             // Load the iframe after title bar content is loaded
-            loadIframe();
+           // loadIframe();
         })
         .catch(error => console.error('Error loading title bar:', error));
 } else {
@@ -221,7 +226,7 @@ function attachNavbarListeners() {
                     item.style.marginTop = '5px';
                 }
                 const anchor = document.createElement('a');
-                anchor.href = `/games/${pageData.name}.html`;
+                anchor.href = `/games/?${pageData.name}`;
                 anchor.style = `
                             text-decoration: none;
                             font-family: "M Plus Rounded 1c", sans-serif;
@@ -238,7 +243,7 @@ function attachNavbarListeners() {
                     anchor.style.textDecoration = 'none';
                 });
                 const image = document.createElement('img');
-                image.src = `/images/games/${pageData.name}.png`;
+                image.src = `/images/games-256/${pageData.name}.png`;
                 image.alt = pageData.formatted_Name;
                 image.style.width = '6vw';
                 image.style.height = 'auto';
@@ -404,7 +409,7 @@ function fullscreenFunction2() {
         pageName = currentUrl.split("#").pop();
     } else {
         // Get everything between "/games/" and ".html"
-        const match = currentUrl.match(/\/games\/(.*?)\.html/);
+        const match = currentUrl.match(/\/games\/\?([^?]*)/);
         pageName = match ? match[1] : "unknown";
     }
 
@@ -472,7 +477,7 @@ function fullscreenFunction2() {
 
 function applyStoredSettings() {
     // Preset values
-    const presetBackgroundImage = '/background.png';
+    const presetBackgroundImage = '/images/backgrounds/background-blue-old.png';
     const presetPrimaryColor = '#111E2C';
     const presetSecondaryColor = '#58AAFC';
     const presetBackgroundRes = '100';
@@ -568,6 +573,8 @@ function applyStoredSettings() {
         }
     }
 }
+
+  
 
 window.addEventListener('load', applyStoredSettings);
 

@@ -1,27 +1,47 @@
-// TRACK PAGE FUNCTION
 function trackPage() {
-    console.log("[trackPage] Called");
-    // Get the current page URL without fragment or query parameters.
-    const currentPage = window.location.href.split("#")[0].split("?")[0];
-    let visitedPages = JSON.parse(localStorage.getItem("visitedPages")) || [];
+  console.log("[trackPage] Called");
+
+  const currentPage = window.location.href.split("#")[0];
+
+  let visitedPages = JSON.parse(localStorage.getItem("visitedPages")) || [];
   
-    if (currentPage.includes("/games/")) {
-      // Remove any occurrence of this page (ignoring fragments)
-      visitedPages = visitedPages.filter(page => page.split("#")[0] !== currentPage);
-      // Add current page at the beginning if not already present.
-      if (!visitedPages.includes(currentPage)) {
-        visitedPages.unshift(currentPage);
-      }
+  visitedPages = visitedPages.map(page => {
+    const matchHtml = page.match(/\/games\/([^\/?#]+)\.html$/);
+    if (matchHtml) {
+      const gameName = matchHtml[1];
+      return page.replace(/\/games\/[^\/?#]+\.html/, `/games/?${gameName}`);
     }
   
-    // Remove duplicates and limit to 4 entries.
-    const uniqueVisitedPages = [...new Set(visitedPages)].slice(0, 4);
-    localStorage.setItem("visitedPages", JSON.stringify(uniqueVisitedPages));
+    const matchQuery = page.match(/\/games\/index\.html\?([^\/?#]+)/);
+    if (matchQuery) {
+      const gameName = matchQuery[1];
+      return page.replace(/\/games\/index\.html\?[^\/?#]+/, `/games/?${gameName}`);
+    }
   
-    // Call displayVisitedPages once.
-    displayVisitedPages();
-    console.log("[trackPage] Finished");
+    return page;
+  });
+  visitedPages = visitedPages.filter(page => !page.includes("/games/?missing"));
+  
+
+  if (currentPage.includes("/games/")) {
+      // Remove any occurrence of this page (ignoring fragments)
+      visitedPages = visitedPages.filter(page => page.split("#")[0] !== currentPage);
+
+      // Add current page at the beginning if not already present.
+      if (!visitedPages.includes(currentPage)) {
+          visitedPages.unshift(currentPage);
+      }
   }
+
+  // Remove duplicates and limit to 4 entries.
+  const uniqueVisitedPages = [...new Set(visitedPages)].slice(0, 4);
+  localStorage.setItem("visitedPages", JSON.stringify(uniqueVisitedPages));
+
+  // Call displayVisitedPages once.
+  displayVisitedPages();
+  console.log("[trackPage] Finished");
+}
+
   
   // PLAYTIME CALCULATION FUNCTION
   async function calculatePlaytimeRECENT(gameId) {
@@ -97,7 +117,7 @@ function trackPage() {
         playtimeText = "Never Played"; // Skip playtime calculation for random entries.
       } else {
         // For a visited page, assume the URL is in the format "/games/foo.html".
-        const editedName = page.match(/\/games\/([^\/]+)\.html/);
+        const editedName = page.match(/\?([^#]+)/);
         pageName = editedName ? editedName[1] : "missing";
   
         // Look up the formatted name in pagesData.
@@ -108,6 +128,33 @@ function trackPage() {
           }
         });
   
+const checkExtension = () => {
+  const testElement = document.createElement('div');
+  testElement.style.color = 'rgb(0, 0, 0)';  // Black text
+  testElement.style.backgroundColor = 'rgb(255, 255, 255)';  // White background
+  testElement.style.position = 'absolute';
+  testElement.style.top = '-9999px'; // Offscreen to prevent display
+  document.body.appendChild(testElement);
+
+  const computedColor = window.getComputedStyle(testElement).color;
+  const computedBackground = window.getComputedStyle(testElement).backgroundColor;
+
+  let isExtensionActive = false;
+
+  // Check if styles are altered in a way that dark mode extensions might do
+  if (computedColor !== 'rgb(0, 0, 0)' || computedBackground !== 'rgb(255, 255, 255)') {
+      isExtensionActive = true;
+  }
+
+  document.body.removeChild(testElement);
+
+  if (isExtensionActive) {
+      alert("Please disable any visual enhancement extensions (like Dark Reader) to view this site correctly.");
+  }
+};
+
+checkExtension();
+
         // Calculate the playtime for this game.
         try {
           playtimeText = await calculatePlaytimeRECENT(pageName);
@@ -133,14 +180,14 @@ function trackPage() {
         <div class="suggest-game" 
              onmouseover="highlightImage2('suggest-img${index+1}', 'suggest-text${index+1}')" 
              onmouseout="removeHighlight2('suggest-img${index+1}', 'suggest-text${index+1}')">
-          <a href="games/${pageName}.html">
+          <a href="games/?${pageName}">
             <div class="suggest-text-back-container" 
                  style="position:absolute; margin:0.6vh; width:16.8vw; height:calc(20.3vw * 9 / 16); overflow:hidden; z-index:2;">
               <div class="suggest-text-back" 
                    style="position:absolute; width:300%; height:300%; left:-5vw; top:0vw; background-color:black; opacity:0;"></div>
             </div>
             <img id="suggest-img${index+1}" 
-                 src="/images/games/${pageName}.png" 
+                 src="/images/games-256/${pageName}.png" 
                  alt="${pageName}" 
                  style="margin:0.6vh; border-radius:0.4vw; position:relative; height:auto;" />
             <p id="suggest-text${index+1}" 
@@ -166,14 +213,14 @@ function trackPage() {
       <div class="suggest-game" 
              onmouseover="highlightImage2('suggest-img${index+1}', 'suggest-text${index+1}')" 
              onmouseout="removeHighlight2('suggest-img${index+1}', 'suggest-text${index+1}')">
-          <a href="games/${pageName}.html">
+          <a href="games/?${pageName}">
             <div class="suggest-text-back-container" 
                  style="position:absolute; margin:0.6vh; width:16.8vw; height:calc(20.3vw * 9 / 16); overflow:hidden; z-index:2;">
               <div class="suggest-text-back" 
                    style="position:absolute; width:300%; height:300%; left:-5vw; top:0vw; background-color:black; opacity:0;"></div>
             </div>
             <img id="suggest-img${index+1}" 
-                 src="/images/games/${pageName}.png" 
+                 src="/images/games-256/${pageName}.png" 
                  alt="${pageName}" 
                  style="margin:0.6vh; border-radius:0.4vw; position:relative; height:auto;" />
             <p id="suggest-text${index+1}" 
