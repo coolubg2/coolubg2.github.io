@@ -13,7 +13,7 @@ function generateNewPageList() {
     });
 
     // Limit to the first 15 items after sorting
-    const itemsToShow = pagesData.slice(0, 8);
+    const itemsToShow = pagesData.slice(0, 10);
 
     itemsToShow.forEach((page, index) => {
       // Format the full name
@@ -24,8 +24,8 @@ function generateNewPageList() {
       
       // Calculate letter spacing
       var letterSpacing;
-        if (formattedName.length > 24) {
-          letterSpacing = `-${(formattedName.length - 20) * 0.014}rem`;
+        if (formattedName.length > 28) {
+          letterSpacing = `-${(formattedName.length - 24) * 0.013}rem`;
       } else {
         letterSpacing = "normal";
       }

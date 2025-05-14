@@ -1917,8 +1917,8 @@ const pagesData = [
     category: ["platformer"],
     date: "29-10-2024",
     release_Date: "2009",
-    authors: ["Evgeniy Fedoseev"],
-    authorLinks: ["https://redball.fandom.com/wiki/Eugine_Fedossev"],
+    authors: ["Distractionware/Terry Cavanagh"],
+    authorLinks: ["https://distractionware.com/blog/"],
     description: "No Description Available"
   },
 
@@ -2322,7 +2322,7 @@ const pagesData = [
     category: ["puzzle"],
     date: "31-01-2025",
     release_Date: "25-05-2006",
-    authors: ["Jonochrome"],
+    authors: ["Jonochrome/JonBro"],
     authorLinks: ["#"],
     description: "No Description Available"
   },
@@ -2330,7 +2330,7 @@ const pagesData = [
     name: "robot-unicorn-attack",
     formatted_Name: "Robot Unicorn Attack",
     fileType: "swf",
-    category: ["platformer", "endless"],
+    category: ["platformer", "endless", "runner", "music"],
     date: "31-01-2025",
     release_Date: "04-02-2010",
     authors: ["Spiritonin Media Games", "Adult Swim Games"],
@@ -2673,8 +2673,8 @@ const pagesData = [
   category: ["platformer"],
   date: "03-05-2025",
   release_Date: "2008", // maybe 2009?
-  authors: ["Evgeniy Fedoseev"],
-  authorLinks: ["https://redball.fandom.com/wiki/Eugine_Fedossev"],
+  authors: ["Distractionware/Terry Cavanagh"],
+  authorLinks: ["https://distractionware.com/blog/"],
   description: "No Description Available"
 },
 {
@@ -2684,9 +2684,121 @@ const pagesData = [
   category: ["platformer"],
   date: "03-05-2025",
   release_Date: "2012",
-  authors: ["Evgeniy Fedoseev"],
-  authorLinks: ["https://redball.fandom.com/wiki/Eugine_Fedossev"],
+  authors: ["Distractionware/Terry Cavanagh"],
+  authorLinks: ["https://distractionware.com/blog/"],
   description: "No Description Available"
 },
+
+//14/05/2025
+{
+  name: "bowman",
+  formatted_Name: "Bowman",
+  fileType: "swf",
+  category: ["archery", "turn based", "multiplayer", "shooter"],
+  date: "14-05-2025",
+  release_Date: "05-12-2004",
+  authors: ["Distractionware/Terry Cavanagh"],
+  authorLinks: ["https://distractionware.com/blog/"],
+  description: "No Description Available"
+},
+{
+  name: "bubble-shooter",
+  formatted_Name: "Bubble Shooter",
+  fileType: "swf",
+  category: ["Puzzle", "Puzzle Bobble", "shooter", "taito", "arcade"],
+  date: "14-05-2025",
+  release_Date: "2001", //1994 as puzzle bobble by taito
+  authors: ["Absolutist", "Taito"],
+  authorLinks: ["https://absolutist.com/", "https://www.taito.co.jp/en/"],
+  description: "Released in 1994 as Puzzle Bobble by Taito"
+},
+{
+  name: "dont-look-back",
+  formatted_Name: "Don't Look Back",
+  fileType: "swf",
+  category: ["platformer", "atmospheric"],
+  date: "14-05-2025",
+  release_Date: "2009",
+  authors: ["Distractionware/Terry Cavanagh"],
+  authorLinks: ["https://distractionware.com/blog/"],
+  description: "A modern interpretation of the Greek legend of Orpheus and Eurydice."
+},
+{
+  name: "html5-minesweeper",
+  formatted_Name: "HTML5 Minesweeper",
+  fileType: "html",
+  category: ["puzzle"],
+  date: "14-05-2025",
+  release_Date: "07-01-2013",// original more like 1990-ish
+  authors: [" Joey van Ommen"],
+  authorLinks: ["https://github.com/Joeynoh"],
+  description: "Minesweeper game using jQuery and HTML5 canvas."
+},
+{
+  name: "qwop",
+  formatted_Name: "QWOP",
+  fileType: "html",
+  category: ["ragdoll"],
+  date: "14-05-2025",
+  release_Date: "12-11-2008",// original more like 1990-ish
+  authors: ["Bennett Foddy"],
+  authorLinks: ["https://www.foddy.net/"],
+  description: "layers control an athlete named 'Qwop' using only the Q, W, O, and P keys."
+},
+{
+    name: "riddle-school-2",
+    formatted_Name: "Riddle School 2",
+    fileType: "swf",
+    category: ["point-and-click", "puzzle"],
+    date: "14-05-2025",
+    release_Date: "13-11-2006",
+    authors: ["Jonochrome/JonBro"],
+    authorLinks: [""],
+    description: "The second installment in the Riddle School series, featuring classroom escape puzzles with humor and charm."
+  },
+  {
+    name: "robot-unicorn-attack-heavy-metal",
+    formatted_Name: "Robot Unicorn Attack: Heavy Metal",
+    fileType: "swf",
+    category: ["platformer", "endless", "runner", "music"],
+    date: "14-05-2025",
+    release_Date: "13-10-2010",
+    authors: ["Spiritonin Media Games", "Adult Swim Games"],
+    authorLinks: ["https://web.archive.org/web/20151002101644/http://www.spiritonin.com/", "https://www.adultswim.com/games"],
+    description: "A darker, heavy metal-themed version of the original endless runner where you dash through a fiery landscape to the tune of Blind Guardian's 'Battlefield'."
+  },
+  {
+    name: "sinjid-shadow-of-the-warrior",
+    formatted_Name: "Sinjid: Shadow of the Warrior",
+    fileType: "swf",
+    category: ["action", "RPG"],
+    date: "14-05-2025",
+    release_Date: "24-12-2004",
+    authors: ["Krin"],
+    authorLinks: ["https://sinjid.fandom.com/wiki/Sinjid_Wiki"],
+    description: "An action-RPG Flash game where you train and fight as a ninja seeking vengeance, with stat progression and tactical combat."
+  },
+  {
+    name: "stick-cricket",
+    formatted_Name: "Stick Cricket",
+    fileType: "html",
+    category: ["sports"],
+    date: "14-05-2025",
+    release_Date: "12-2003",
+    authors: ["Colin Rowe"],
+    authorLinks: ["https://flashgaming.fandom.com/wiki/Stick_Cricket"],
+    description: "Simplified yet addictive cricket game with stick-figure players and big hits, originally a popular browser sports title."
+  },
+  {
+    name: "the-mast",
+    formatted_Name: "The Mast (3D)",
+    fileType: "html",
+    category: ["3D", "exploration", "atmospheric"],
+    date: "14-05-2025",
+    release_Date: "09-6-2023",
+    authors: ["awesome-llama"],
+    authorLinks: ["https://scratch.mit.edu/users/awesome-llama/"],
+    description: "A textured 3D exploration game set on a fictional planet, built in Scratch. Navigate detailed environments and uncover the events that took place. Inspired by Infra and Rain World."
+  }
 
 ];
