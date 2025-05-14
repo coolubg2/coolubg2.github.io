@@ -18,7 +18,7 @@ function goToRandomPage() {
         var randomPage = pagesData[randomIndex].name;
 
         // Format the page URL
-        var formattedPage = "/games/" + randomPage + ".html";
+        var formattedPage = "/games/index.html?" + randomPage;
 
         // Redirect to the random page
         window.location.href = formattedPage;

@@ -399,19 +399,23 @@ function fullscreenFunction2() {
     var gameElement = document.getElementById('game-iframe');
     if (!gameElement) return;
 
-    var gameSrc = gameElement.src;
     const currentUrl = window.location.href;
 
-    // Extract the relevant portion of the URL
+    // Extract everything after the "?" (query string)
     let pageName;
-    if (currentUrl.includes("#")) {
-        // Get everything after the hash (#)
-        pageName = currentUrl.split("#").pop();
+    const queryIndex = currentUrl.indexOf("?");
+    if (queryIndex !== -1) {
+        pageName = currentUrl.substring(queryIndex + 1).split("#")[0]; // remove hash if present
     } else {
-        // Get everything between "/games/" and ".html"
-        const match = currentUrl.match(/\/games\/\?([^?]*)/);
-        pageName = match ? match[1] : "unknown";
+        pageName = "unknown";
     }
+
+    
+      const pageEntry = pagesData.find(page => page.name === pageName);
+
+        const name = pageEntry?.formatted_Name || pageName;
+    var titleText = name
+    var gameSrc = gameElement.src;
 
     // Dynamically fetch the contents of playtime.js
     fetch('/js/playtime.js')
