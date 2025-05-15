@@ -2737,7 +2737,7 @@ const pagesData = [
 {
   name: "qwop",
   formatted_Name: "QWOP",
-  fileType: "html",
+  fileType: "swf",
   category: ["ragdoll"],
   date: "14-05-2025",
   release_Date: "12-11-2008",// original more like 1990-ish
@@ -2781,7 +2781,7 @@ const pagesData = [
   {
     name: "stick-cricket",
     formatted_Name: "Stick Cricket",
-    fileType: "html",
+    fileType: "swf",
     category: ["sports"],
     date: "14-05-2025",
     release_Date: "12-2003",
