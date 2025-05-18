@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    window.onload = function () {
+      const path = window.location.pathname;
+      const match = path.match(/\/games\/([^\/]+)\.html$/);
+
+      if (match && match[1]) {
+        const tag = match[1];
+        const newUrl = `/games/?${encodeURIComponent(tag)}`;
+        window.location.replace(newUrl);
+      } else {
+        console.error("URL format not recognized.");
+      }
+    };
+  </script>
+</head>
+<body>
+  <p>Redirecting...</p>
+</body>
+</html>
