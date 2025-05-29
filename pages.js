@@ -1569,7 +1569,7 @@ const pagesData = [
     name: "doom-marines-best-friend",
     formatted_Name: "DOOM Marine's Best Friend",
     fileType: "html",
-    category: ["shooter", "demo"],
+    category: ["shooter", "demo", "doom"],
     date: "04-09-2024",
     release_Date: "10-12-1993",
     authors: ["id Software", "Romero Games", "caiiycuk", "Lee Killough", "Sakitoshi"],
@@ -1622,6 +1622,7 @@ const pagesData = [
   },
   {
     name: "sigil-1&2",
+    file_name: "doom-marines-best-friend/sigil.html",
     formatted_Name: "Sigil 1 & 2",
     fileType: "html",
     category: ["shooter", "doom"],
@@ -2697,8 +2698,8 @@ const pagesData = [
   category: ["archery", "turn based", "multiplayer", "shooter"],
   date: "14-05-2025",
   release_Date: "05-12-2004",
-  authors: ["Distractionware/Terry Cavanagh"],
-  authorLinks: ["https://distractionware.com/blog/"],
+  authors: ["Frank Valzano?"],
+  authorLinks: [""],
   description: "No Description Available"
 },
 {
@@ -2799,6 +2800,121 @@ const pagesData = [
     authors: ["awesome-llama"],
     authorLinks: ["https://scratch.mit.edu/users/awesome-llama/"],
     description: "A textured 3D exploration game set on a fictional planet, built in Scratch. Navigate detailed environments and uncover the events that took place. Inspired by Infra and Rain World."
+  },
+
+//20/05/2025
+
+  {
+    name: "battle-ships-general-quarters",
+    formatted_Name: "Battleships Ships General Quarters",
+    fileType: "swf",
+    category: ["battleships", "strategy"],
+    date: "20-05-2025",
+    release_Date: "14-05-2003",
+    authors: ["F. Winters", "Miniclip"],
+    authorLinks: ["", "https://www.miniclip.com/"],
+    description: ""
+  },
+  {
+    name: "bloons-super-monkey",
+    formatted_Name: "Bloons Super Monkey",
+    fileType: "swf",
+    category: ["Balloons", "Vertically scrolling shooters", "shooter", "flight", "flying"],
+    date: "20-05-2025",
+    release_Date: "15-02-2010",
+    authors: ["Ninja Kiwi"],
+    authorLinks: ["https://ninjakiwi.com/"],
+    description: ""
+  },
+  {
+    name: "canterlot-siege-4",
+    formatted_Name: "Canterlot Siege 4",
+    fileType: "swf",
+    category: ["tower defense", "tower defence", "my little pony"],
+    date: "20-05-2025",
+    release_Date: "15-09-2015",
+    authors: ["futzi01"],
+    authorLinks: ["https://archive.org/details/canterlot_siege_4_by_futzi01-d99nrhx"],
+    description: ""
+  },
+  {
+    name: "defend-your-castle",
+    formatted_Name: "Defend your Castle",
+    fileType: "swf",
+    category: ["tower defense", "tower defence", "mouse"],
+    date: "20-05-2025",
+    release_Date: "13-03-2003",
+    authors: ["XGen Studios"],
+    authorLinks: ["https://www.xgenstudios.com/"],
+    description: ""
+  },
+  {
+    name: "duck-life-treasure-hunt",
+    formatted_Name: "Duck Life Treasure Hunt",
+    fileType: "swf",
+    category: ["none"],
+    date: "20-05-2025",
+    release_Date: "17-06-2014",
+    authors: ["Wix Games"],
+    authorLinks: ["https://games.wixgames.co.uk/"],
+    description: ""
+  },
+  {
+    name: "helicopter-game",
+    formatted_Name: "Helicopter Game",
+    fileType: "swf",
+    category: ["flappy bird"],
+    date: "20-05-2025",
+    release_Date: "04-06-2002",
+    authors: ["SeeThru"],
+    authorLinks: ["https://www.seethru.co.uk/"],
+    description: ""
+  },
+  {
+    name: "need-for-speed-underground-quarter-mile-challenge",
+    formatted_Name: "Need For Speed 1/4 Mile Challenge",
+    fileType: "swf",
+    category: ["flappy bird"],
+    date: "20-05-2025",
+    release_Date: "10-2003",
+    authors: ["EA Games"],
+    authorLinks: ["https://www.ea.com/"],
+    description: ""
+  },
+  {
+    name: "puzzle-bobble",
+    formatted_Name: "Puzzle Bobble",
+    fileType: "swf",
+    category: ["bubble shooter", "Puzzle", "shooter", "arcade"],
+    date: "20-05-2025",
+    release_Date: "06-1994",
+    authors: ["Taito"],
+    authorLinks: ["https://www.taito.co.jp/"],
+    description: ""
+  },
+  {
+    name: "riddle-school-3",
+    formatted_Name: "Riddle School 3",
+    fileType: "swf",
+    category: ["puzzle"],
+    date: "20-05-2025",
+    release_Date: "16-03-2008",
+    authors: ["JonBro"],
+    authorLinks: [""],
+    description: ""
+  },
+  {
+    name: "uno-3",
+    formatted_Name: "Uno 3",
+    fileType: "swf",
+    category: ["card game", "last card"],
+    date: "20-05-2025",
+    release_Date: "2009",
+    authors: ["Mattel"],
+    authorLinks: ["https://www.mattel.com/"],
+    description: "tres"
   }
+
+
 
 ];

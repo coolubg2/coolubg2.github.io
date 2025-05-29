@@ -153,65 +153,81 @@ function attachNavbarListeners() {
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
 
-    function searchPages(query) {
-        searchResults.innerHTML = '';
-        if (query === "") {
-            searchResults.style.display = 'none';
-            return;
+  function searchPages(query) {
+    searchResults.innerHTML = '';
+    if (query === "") {
+        searchResults.style.display = 'none';
+        return;
+    }
+
+    const normalizedQuery = query
+        .replace(/&/g, ' and ')
+        .toLowerCase()
+        .trim();
+
+    const queryWords = normalizedQuery.split(/\s+/);
+
+    // Filter and mark match type (name or tag)
+    const filteredPages = pagesData.map(pageData => {
+        const normalizedPageName = pageData.name
+            .replace(/-/g, ' ')
+            .replace(/&/g, ' and ')
+            .toLowerCase();
+
+        const categoryArray = Array.isArray(pageData.category) ? pageData.category : [];
+        const normalizedCategoryWords = categoryArray.map(cat => cat.toLowerCase().trim());
+
+        const nameMatches = queryWords.every(word => normalizedPageName.includes(word));
+        
+        const categoryMatches = normalizedCategoryWords.some(categoryWord =>
+            categoryWord.includes(normalizedQuery) &&
+            (
+                normalizedQuery.length / categoryWord.length >= 0.7 ||
+                categoryWord.startsWith(normalizedQuery)
+            )
+        );
+
+        if (nameMatches) {
+            pageData.matchType = 'name';
+            return pageData;
+        } else if (categoryMatches) {
+            pageData.matchType = 'tag';
+            return pageData;
+        }
+        return null;
+    }).filter(Boolean);
+
+    // Sort so name matches come first, then by score
+    const sortedPages = filteredPages.sort((a, b) => {
+        const nameA = a.name.toLowerCase();
+        const nameB = b.name.toLowerCase();
+        const queryLower = normalizedQuery;
+
+        // 1. Prioritize matchType
+        if (a.matchType !== b.matchType) {
+            return a.matchType === 'name' ? -1 : 1;
         }
 
-        const normalizedQuery = query
-            .replace(/&/g, ' and ')
-            .toLowerCase()
-            .trim();
+        // 2. Use your scoring function
+        const getNameScore = (name) => {
+            if (name === queryLower) return 100;
+            if (name.startsWith(queryLower)) return 90;
+            const occurrences = (name.match(new RegExp(queryLower, "g")) || []).length;
+            const index = name.indexOf(queryLower);
+            if (occurrences > 0) return 80 - index;
+            return 0;
+        };
 
-        const queryWords = normalizedQuery.split(/\s+/);
+        const scoreA = getNameScore(nameA);
+        const scoreB = getNameScore(nameB);
 
-        // Filter by name and category
-        const filteredPages = pagesData.filter(pageData => {
-            const normalizedPageName = pageData.name
-                .replace(/-/g, ' ')
-                .replace(/&/g, ' and ')
-                .toLowerCase();
+        if (scoreA > scoreB) return -1;
+        if (scoreA < scoreB) return 1;
 
-            const categoryArray = Array.isArray(pageData.category) ? pageData.category : [];
-            const normalizedCategoryWords = categoryArray.map(cat => cat.toLowerCase().trim());
+        return nameA.localeCompare(nameB);
+    });
 
-            const nameMatches = queryWords.every(word => normalizedPageName.includes(word));
-            const categoryMatches = queryWords.some(word =>
-                normalizedCategoryWords.some(categoryWord =>
-                    categoryWord.startsWith(word) && word.length >= categoryWord.length / 2
-                )
-            );
-
-            return nameMatches || categoryMatches;
-        });
-
-        const sortedPages = filteredPages.sort((a, b) => {
-            const nameA = a.name.toLowerCase();
-            const nameB = b.name.toLowerCase();
-            const queryLower = normalizedQuery.toLowerCase();
-
-            const aStartsWith = nameA.startsWith(queryLower);
-            const bStartsWith = nameB.startsWith(queryLower);
-
-            if (aStartsWith && !bStartsWith) return -1;
-            if (!aStartsWith && bStartsWith) return 1;
-
-            const aOccurrences = (nameA.match(new RegExp(queryLower, "g")) || []).length;
-            const bOccurrences = (nameB.match(new RegExp(queryLower, "g")) || []).length;
-
-            if (aOccurrences > bOccurrences) return -1;
-            if (aOccurrences < bOccurrences) return 1;
-
-            const aFirstOccurrence = nameA.indexOf(queryLower);
-            const bFirstOccurrence = nameB.indexOf(queryLower);
-
-            if (aFirstOccurrence < bFirstOccurrence) return -1;
-            if (aFirstOccurrence > bFirstOccurrence) return 1;
-
-            return nameA.localeCompare(nameB);
-        });
+    // Use sortedPages for display/rendering
 
         if (sortedPages.length === 0) {
             searchResults.innerHTML = '<p style="margin: 0; font-size: 14px; color: var(--primary-color);">No results found</p>';

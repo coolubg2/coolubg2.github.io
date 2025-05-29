@@ -47,7 +47,8 @@
           console.log("Attempting to add HTML game...");
           const gameIframe = document.createElement("iframe");
           gameIframe.id = "game-iframe";
-          gameIframe.src = `https://coolubg2.github.io/coolubg-list/${queryParam}/`;
+          const fileName = pageEntry["file_name"] || pageEntry.name;
+          gameIframe.src = `https://coolubg2.github.io/coolubg-list/${fileName}`;
           gameIframe.width = "800";
           gameIframe.height = "600";
           gameIframe.frameBorder = "0";
