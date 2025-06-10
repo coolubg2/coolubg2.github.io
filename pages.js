@@ -379,7 +379,7 @@ const pagesData = [
     name: "earn-to-die-2012",
     formatted_Name: "Earn To Die 2012",
     fileType: "html",
-    category: ["none"],
+    category: ["zombie", "driving"],
     date: "04-12-2023",
     release_Date: "20-11-2014",
     authors: ["Toffee Games"],
@@ -787,7 +787,7 @@ const pagesData = [
     name: "plants-vs.-zombies-web-demo",
     formatted_Name: "Plants VS. Zombies",
     fileType: "html",
-    category: ["wave tower", "demo"],
+    category: ["wave tower", "demo", "zombie", "wave"],
     date: "28-11-2023",
     release_Date: "05-05-2009",
     authors: ["PopCap Games"],
@@ -2913,8 +2913,73 @@ const pagesData = [
     authors: ["Mattel"],
     authorLinks: ["https://www.mattel.com/"],
     description: "tres"
-  }
+  },
 
-
-
+  // 10/05/2025
+  {
+    name: "riddle-school-4",
+    formatted_Name: "Riddle School 4",
+    fileType: "swf",
+    category: ["puzzle"],
+    date: "10-06-2025",
+    release_Date: "01-04-2010",
+    authors: ["JonBro"],
+    authorLinks: [""],
+    description: ""
+  },
+  {
+    name: "canterlot-siege-2",
+    formatted_Name: "Canterlot Siege 2",
+    fileType: "swf",
+    category: ["tower defense", "tower defence", "my little pony"],
+    date: "10-06-2025",
+    release_Date: "27-10-2013",
+    authors: ["futzi01"],
+    authorLinks: ["https://archive.org/details/canterlot_siege_2_by_futzi01-d6s0kwq"],
+    description: ""
+  },
+  {
+    name: "desktop-tower-defense",
+    formatted_Name: "Desktop Tower Defense",
+    fileType: "swf",
+    category: ["tower defense", "tower defence"],
+    date: "10-06-2025",
+    release_Date: "03-2007",
+    authors: ["Paul Preece"],
+    authorLinks: ["https://en.wikipedia.org/wiki/Kixeye"],
+    description: "a Flash-based tower defense browser game. The game had been played over 15.7 million times as of July 2007, and was one of Webware 100's top ten entertainment web applications of 2007. In May 2009, a commercial Nintendo DS version became available."
+  },
+    {
+    name: "elephant-rave-2",
+    formatted_Name: "Elephant Rave 2",
+    fileType: "swf",
+    category: ["platformer", "action", "rave", "elephant"],
+    date: "10-06-2025",
+    release_Date: "07-09-2023",
+    authors: ["John Cooney"],
+    authorLinks: ["https://wonderfulelephant.com/"],
+    description: "The elephant has endured. The world has asked too much, and we have given too little. When will we support the elephant in the way that he has supported us? The rave marches on relentlessly and we will prevail against every challenge<br>Elephant Rave 2 is a long overdue sequel to Elephant Rave. A renaissance title of its time, Elephant Rave is the foundation of so many classic Flash games including This is the Only Level, Achievement Unlocked, and others, now blissfully 14 years later on Steam. Elephant Rave 2 includes:<br><br>- Many more deadly lasers<br>- A rocking soundtrack by ZeRo-BaSs<br>- Gravity, and sometimes not<br>- An extremely good amount of spotlights<br>- A questionably good message about elephants that is (also questionably) a metaphor for our lives<br><br><br>Please enjoy the latest installment of Elephant Rave, and be kind and wonderful to yourselves. Thank you Newgrounds for the years of supporting my work<br><br>Shameless plug: The Elephant Collection is launching on Steam and PC platforms SOON. It's ten OG blue elephant titles, remastered, fun new achievements, and a bunch of dev behind the scenes stuff. CHECK IT OUT.<br><a href='https://store.steampowered.com/app/2274110/The_Elephant_Collection/'>https://store.steampowered.com/app/2274110/The_Elephant_Collection/</a>"
+  },
+      {
+    name: "achievement-unlocked-2",
+    formatted_Name: "Achievement Unlocked 2",
+    fileType: "swf",
+    category: ["platformer", "action", "puzzle", "elephant"],
+    date: "10-06-2025",
+    release_Date: "16-10-2010",
+    authors: ["John Cooney"],
+    authorLinks: ["https://wonderfulelephant.com/"],
+    description: "This is a game about you.<br><br>Yes you, the player: A lowly blue elephant in a world that has no defining purpose. But you will create a purpose, and that purpose is to do the unthinkable. The extraordinary. The tasks that few have thought to achieve. The world you struggle in pushes back with tremendously nonsensical squares and launchers... coins that pay for things you would only imagine should have been free to begin with. Spikes will be hellbent in causing your demise. This will not be easy. And while the road of purposelessness will be overbearing you will succeed. You know why?<br><br>Because it's your destiny.<br><br>Welcome to metagaming hell.<br><br>Welcome to Achievement Unlocked 2."
+  },
+        {
+    name: "zombocalypse",
+    formatted_Name: "Zombocalypse",
+    fileType: "swf",
+    category: ["zombie", "shooter", "wave"],
+    date: "10-06-2025",
+    release_Date: "18-10-2011",
+    authors: ["IronZilla", "Apatheria"],
+    authorLinks: ["https://ironzilla.newgrounds.com/", "https://apatheria.newgrounds.com/"],
+    description: "eric"
+  },
 ];
