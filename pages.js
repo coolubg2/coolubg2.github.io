@@ -2452,7 +2452,7 @@ const pagesData = [
   {
     name: "this-is-the-only-level",
     formatted_Name: "This is the Only Level",
-    fileType: "html",
+    fileType: "swf",
     category: ["platformer", "puzzle", "metagame"],
     date: "31-01-2025",
     release_Date: "08-08-2009",
