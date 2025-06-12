@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CoolUBG Wrapped</title>
+  <style>
+   body {
+  font-family: "Segoe UI", Roboto, sans-serif;
+  background-color: #121212;
+  color: #f0f0f0;
+  line-height: 1.6;
+  margin: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  border-bottom: 2px solid #444;
+  padding-bottom: 0.3rem;
+  color: #90caf9;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+}
+
+li {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background-color: #1e1e1e;
+  border-left: 4px solid #2196f3;
+  border-radius: 6px;
+}
+
+.duration {
+  font-size: 0.9rem;
+  color: #b0bec5;
+  margin-top: 0.2rem;
+  padding-left: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  body {
+    margin: 1rem;
+    font-size: 0.95rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <h1>CoolUBG Wrapped</h1>
+  <div id="log-output"></div>
+
+  <script>
+    const DB_NAME = "PlaytimeDB";
+    const DB_VERSION = 1;
+    const STORE_NAME = "playtimeLogs";
+
+    function openDB() {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open(DB_NAME, DB_VERSION);
+        request.onsuccess = (event) => resolve(event.target.result);
+        request.onerror = (event) => reject("Failed to open DB");
+      });
+    }
+
+    function parseTimestamp(str) {
+      const [datePart, timePart] = str.split(", ");
+      const [day, month, year] = datePart.split("/").map(Number);
+      const [hour, minute] = timePart.split(":").map(Number);
+      return new Date(year, month - 1, day, hour, minute);
+    }
+
+    function formatDateVerbose(date) {
+      const day = date.getDate();
+      const month = date.toLocaleString("default", { month: "long" });
+      const year = date.getFullYear();
+      const suffix = (d) => {
+        if (d > 3 && d < 21) return "th";
+        switch (d % 10) {
+          case 1: return "st";
+          case 2: return "nd";
+          case 3: return "rd";
+          default: return "th";
+        }
+      };
+      const dayStr = `${day}${suffix(day)}`;
+      const timeStr = date.toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit"
+      });
+      return `${dayStr} of ${month} ${year} at ${timeStr}`;
+    }
+
+    function groupConsecutiveTimestamps(timestamps) {
+      if (!timestamps.length) return [];
+
+      const sorted = timestamps.map(parseTimestamp).sort((a, b) => a - b);
+
+      const groups = [];
+      let start = sorted[0];
+      let prev = sorted[0];
+
+      for (let i = 1; i < sorted.length; i++) {
+        const current = sorted[i];
+        const diff = (current - prev) / 60000; // difference in minutes
+
+        if (diff === 1) {
+          prev = current;
+        } else {
+          groups.push([start, prev]);
+          start = current;
+          prev = current;
+        }
+      }
+
+      groups.push([start, prev]);
+      return groups;
+    }
+
+    function getDurationString(start, end) {
+      const minutes = Math.round((end - start) / 60000) + 1;
+
+      if (minutes < 60) {
+        return `${minutes} minute${minutes === 1 ? "" : "s"}`;
+      } else {
+        const hours = minutes / 60;
+        const rounded = Math.round(hours * 10) / 10;
+        return `${rounded} hour${rounded === 1 ? "" : "s"}`;
+      }
+    }
+
+    async function displayLogs() {
+      const db = await openDB();
+      const tx = db.transaction(STORE_NAME, "readonly");
+      const store = tx.objectStore(STORE_NAME);
+      const request = store.getAll();
+
+      request.onsuccess = (event) => {
+        const logs = event.target.result;
+        const container = document.getElementById("log-output");
+
+        logs.forEach(entry => {
+          const gameId = entry.gameId;
+          const groups = groupConsecutiveTimestamps(entry.logs);
+
+          let html = `<h2>${gameId}</h2><ul>`;
+groups.forEach(([start, end]) => {
+  const sameDay = (
+    start.getFullYear() === end.getFullYear() &&
+    start.getMonth() === end.getMonth() &&
+    start.getDate() === end.getDate()
+  );
+
+  if (start.getTime() === end.getTime()) {
+    html += `<li>${formatDateVerbose(start)}</li>`;
+  } else if (sameDay) {
+    const dateStr = formatDateVerbose(start).split(" at ")[0];
+    const startTime = start.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+    const endTime = end.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+    html += `<li>${dateStr} from ${startTime} to ${endTime}<div class="duration">⤷ ${getDurationString(start, end)}</div></li>`;
+  } else {
+    html += `<li>${formatDateVerbose(start)} to ${formatDateVerbose(end)}<div class="duration">⤷ ${getDurationString(start, end)}</div></li>`;
+  }
+});
+          html += `</ul>`;
+          container.innerHTML += html;
+        });
+      };
+
+      request.onerror = (e) => {
+        console.error("Could not read IndexedDB:", e);
+      };
+    }
+
+    window.onload = displayLogs;
+  </script>
+</body>
+</html>

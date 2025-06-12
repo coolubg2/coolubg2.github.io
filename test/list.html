@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Game List</title>
+  <style>
+
+    a {
+      text-decoration: none;
+      display: block;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Game List</h1>
+  <div id="game-list"></div>
+
+  <script src="/pages.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("game-list");
+
+      // Assume pages.js defines a variable named `pages`
+      if (Array.isArray(pagesData)) {
+        pagesData.forEach(game => {
+          if (game.name) {
+            const link = document.createElement("a");
+            link.href = "/games/?" + game.name;
+            link.textContent = game.name;
+            container.appendChild(link);
+          }
+        });
+      } else {
+        container.textContent = "No game data loaded.";
+      }
+    });
+  </script>
+</body>
+</html>
