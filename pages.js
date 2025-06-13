@@ -2982,4 +2982,15 @@ const pagesData = [
     authorLinks: ["https://ironzilla.newgrounds.com/", "https://apatheria.newgrounds.com/"],
     description: "eric"
   },
+          {
+    name: "riddle-school-5",
+    formatted_Name: "Riddle School 5",
+    fileType: "swf",
+    category: ["puzzle"],
+    date: "13-06-2025",
+    release_Date: "02-04-2010",
+    authors: ["JonBro"],
+    authorLinks: [""],
+    description: ""
+  },
 ];
