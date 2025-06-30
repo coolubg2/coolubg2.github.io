@@ -800,7 +800,7 @@ const pagesData = [
     fileType: "html",
     category: ["driving", "racing"],
     date: "13-01-2024",
-    "update_Date": "9-12-2024",
+    update_Date: "9-12-2024",
     release_Date: "03-2023",
     authors: ["Kodub"],
     authorLinks: ["https://www.kodub.com/"],
@@ -1574,7 +1574,7 @@ const pagesData = [
     release_Date: "10-12-1993",
     authors: ["id Software", "Romero Games", "caiiycuk", "Lee Killough", "Sakitoshi"],
     authorLinks: ["https://www.idsoftware.com/", "https://romero.com/sigil", "https://github.com/caiiiycuk", "", ""],
-    description: "No Description Available"
+    description: "Mouse input does not work well<br><br>Z to Shoot<br>Shift to Run<br>Left and Right Arrows to Turn<br>WASD to Move/Strafe"
   },
   {
     name: "heretic",
@@ -1590,12 +1590,13 @@ const pagesData = [
   {
     name: "wolfenstein-3d",
     formatted_Name: "Wolfenstein 3D",
+    file_name: "wolfenstein-3d/ecwolf.html",
     fileType: "html",
     category: ["shooter", "doom", "demo"],
     date: "04-09-2024",
     release_Date: "05-05-1992",
-    authors: ["id Software"],
-    authorLinks: ["https://www.idsoftware.com"],
+    authors: ["id Software", "54ac", "ECwolf Contributers"],
+    authorLinks: ["https://www.idsoftware.com", "https://github.com/54ac", "https://maniacsvault.net/ecwolf/"],
     description: "No Description Available"
   },
   {
@@ -2323,7 +2324,7 @@ const pagesData = [
     category: ["puzzle"],
     date: "31-01-2025",
     release_Date: "25-05-2006",
-    authors: ["Jonochrome/JonBro"],
+    authors: ["JonBro"],
     authorLinks: ["#"],
     description: "No Description Available"
   },
@@ -2753,7 +2754,7 @@ const pagesData = [
     category: ["point-and-click", "puzzle"],
     date: "14-05-2025",
     release_Date: "13-11-2006",
-    authors: ["Jonochrome/JonBro"],
+    authors: ["JonBro"],
     authorLinks: [""],
     description: "The second installment in the Riddle School series, featuring classroom escape puzzles with humor and charm."
   },
@@ -2992,5 +2993,108 @@ const pagesData = [
     authors: ["JonBro"],
     authorLinks: [""],
     description: ""
+  },
+
+  //28/06/2025
+  
+  {
+    name: "riddle-transfer",
+    formatted_Name: "Riddle Transfer",
+    fileType: "swf",
+    category: ["puzzle"],
+    date: "28-06-2025",
+    release_Date: "06-01-2011",
+    authors: ["JonBro"],
+    authorLinks: [""],
+    description: ""
+  },
+    {
+    name: "riddle-transfer-2",
+    formatted_Name: "Riddle Transfer 2",
+    fileType: "swf",
+    category: ["puzzle"],
+    date: "28-06-2025",
+    release_Date: "25-05-2016",
+    authors: ["JonBro"],
+    authorLinks: [""],
+    description: ""
+  },
+      {
+    name: "commander-keen-1-episode-1",
+    formatted_Name: "Commander Keen in Invasion of the Vorticons Ep. 1",
+    fileType: "html",
+    category: ["platformer", "demo"],
+    date: "28-06-2025",
+    release_Date: "14-12-1990",
+    authors: ["id Software", "caiiycuk"],
+    authorLinks: ["https://www.idsoftware.com/", "https://github.com/caiiiycuk"],
+    description: "Episode 1, Demo"
+  },
+          {
+    name: "commander-keen-4-episode-1",
+    formatted_Name: "Commander Keen in Goodbye, Galaxy! Ep. 1",
+    fileType: "html",
+    category: ["platformer", "demo"],
+    date: "28-06-2025",
+    release_Date: "15-12-1991",
+    authors: ["id Software", "caiiycuk"],
+    authorLinks: ["https://www.idsoftware.com/", "https://github.com/caiiiycuk"],
+    description: "Commander Keen 4 Episode 1, Demo"
+  },
+            {
+    name: "level-eaten",
+    formatted_Name: "Level Eaten!",
+    fileType: "html",
+    category: ["platformer", "puzzle"],
+    date: "28-06-2025",
+    release_Date: "15-12-2022",
+    authors: ["Griffpatch"],
+    authorLinks: ["https://scratch.mit.edu/users/griffpatch/"],
+    description: "No Description Available"
+  },
+  {
+    name: "plumber-2",
+    formatted_Name: "Plumber 2",
+    fileType: "swf",
+    category: ["puzzle"],
+    date: "28-06-2025",
+    release_Date: "06-06-2004",
+    authors: ["terrypaton1"],
+    authorLinks: ["https://terrypaton1.newgrounds.com/"],
+    description: "No Description Available"
+  },
+  {
+    name: "polytrack-0.5.0",
+    formatted_Name: "Polytrack 0.5.0",
+    fileType: "html",
+    category: ["driving", "racing"],
+    date: "28-06-2025",
+    update_Date: "08-04-2025",
+    release_Date: "03-2023",
+    authors: ["Kodub"],
+    authorLinks: ["https://www.kodub.com/"],
+    description: "PolyTrack 0.5.0 is a major update introducing many new features, including Winter and Desert environments, the ability to race or watch up to 10 ghosts simultaneously, checkpoint respawning and more.<br><br>The editor has also been updated allowing track parts to be overlapped, rotated around any axis and placed more precisely using a smaller grid.<br><br><a href='https://kodub.itch.io/polytrack/devlog/920520/polytrack-050-winter-desert'>Developer Log</a>"
+  },
+    {
+    name: "ultimate-flash-sonic",
+    formatted_Name: "Ultimate Flash Sonic",
+    fileType: "swf",
+    category: ["platformer"],
+    date: "28-06-2025",
+    release_Date: "21-02-2004",
+    authors: ["Dennis-Gid"],
+    authorLinks: ["https://dennis-gid.newgrounds.com/"],
+    description: "No Description Available"
+  },
+  {
+    name: "winnie-the-poohs-home-run-derby",
+    formatted_Name: "Winnie the Pooh's Home Run Derby",
+    fileType: "swf",
+    category: ["Sports", "disney"],
+    date: "28-06-2025",
+    release_Date: "2007",
+    authors: ["Walt Disney Japan"],
+    authorLinks: ["https://www.disney.com.au/"],
+    description: "Japan"
   },
 ];

@@ -81,6 +81,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 <div id="relatedGamesContainer"></div>
             </div>
+            
+            <div class="description description-bottom2">
+                <div class="description-head">
+                    <h2>Games by the Same Author</h2>
+                </div>
+            <div id="authorRelatedGamesContainer"></div>
+            </div>
         `;
 
         document.getElementById('description-container').innerHTML = descriptionHTML;

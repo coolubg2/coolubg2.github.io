@@ -263,7 +263,12 @@ a {
   grid-column: span 2; /* Make Related Games span both columns */
   grid-row: 2; /* Place in the second row */
 }
-#relatedGamesContainer {
+.description-bottom2 {
+  margin-top: 0.6%;
+  grid-column: span 2; /* Make Related Games span both columns */
+  grid-row: 3; /* Place in the second row */
+}
+#relatedGamesContainer, #authorRelatedGamesContainer {
   display: flex;
   gap: 10px; /* Reduced gap between items */
   justify-content: space-between; /* Ensures equal spacing between images */
@@ -275,7 +280,7 @@ a {
   overflow: hidden; /* Prevent overflow */
 }
 
-#relatedGamesContainer a {
+#relatedGamesContainer a, #authorRelatedGamesContainer a {
   display: inline-block; /* Inline-block to respect layout */
   text-align: center; /* Center text below images */
   color: var(--background-color-text); /* Match text color */
@@ -288,7 +293,7 @@ a {
   transform: none;
 }
 
-#relatedGamesContainer img {
+#relatedGamesContainer img, #authorRelatedGamesContainer img {
   width: 100%; /* Ensure images scale to fit the container */
   max-width: 180px; /* Slightly bigger images */
   height: auto; /* Maintain aspect ratio */
@@ -300,23 +305,23 @@ a {
   transition: 0.15s ease-out;
 }
 
-#relatedGamesContainer a:hover {
+#relatedGamesContainer a:hover, #authorRelatedGamesContainer a:hover {
   transform: scale(1.06);
   color: white;
 }
 
-#relatedGamesContainer a:hover span {
+#relatedGamesContainer a:hover span, #authorRelatedGamesContainer a:hover span {
   color: white;
   text-shadow: 0px 0px 4px black, 0px 0px 4px black, 0px 0px 4px black;
   transition: 0.15s ease-out;
 }
 
-#relatedGamesContainer a:hover img {
+#relatedGamesContainer a:hover img, #authorRelatedGamesContainer a:hover img {
   outline: 0.25vw solid #58aafc;
   box-shadow: 1px 1px 12px #58aafc, 1px 1px 10px #58aafc;
 }
 
-#relatedGamesContainer span.game-name {
+#relatedGamesContainer span.game-name, #authorRelatedGamesContainer span.game-name {
   position: absolute; /* Position the name over the image */
   bottom: 7px; /* Near the bottom of the image */
   left: 17px; /* Align text to the left */
