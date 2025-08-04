@@ -2435,8 +2435,8 @@ const pagesData = [
     date: "09-09-2024",
     update_Date: "31-01-2025",
     release_Date: "08-09-2011",
-    authors: ["Edmund McMillen and Florian Himsl"],
-    authorLinks: ["https://bluebaby.newgrounds.com/"],
+    authors: ["Edmund McMillen", "Florian Himsl"],
+    authorLinks: ["https://bluebaby.newgrounds.com/", ""],
     description: "No Description Available"
   },
   {
@@ -3070,7 +3070,7 @@ const pagesData = [
     category: ["driving", "racing"],
     date: "28-06-2025",
     update_Date: "08-04-2025",
-    release_Date: "03-2023",
+    release_Date: "08-04-2025",
     authors: ["Kodub"],
     authorLinks: ["https://www.kodub.com/"],
     description: "PolyTrack 0.5.0 is a major update introducing many new features, including Winter and Desert environments, the ability to race or watch up to 10 ghosts simultaneously, checkpoint respawning and more.<br><br>The editor has also been updated allowing track parts to be overlapped, rotated around any axis and placed more precisely using a smaller grid.<br><br><a href='https://kodub.itch.io/polytrack/devlog/920520/polytrack-050-winter-desert'>Developer Log</a>"

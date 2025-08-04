@@ -499,3 +499,7 @@ button {
   background-repeat: repeat !important; /* Repeat the image */
   background-position: center; /* Center the image */
 }
+
+#poll-banner {
+margin-bottom: 20px !important;
+}

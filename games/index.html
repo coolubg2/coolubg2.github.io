@@ -1,49 +1,46 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <title>Cool Unblocked Games</title> <!-- Title gets replaced by games-info.js-->
+  <meta charset="UTF-8">
+  <title>Cool Unblocked Games</title>
+  <link rel="canonical" href="https://coolubg2.github.io/games" />
   <link rel="stylesheet" type="text/css" href="/games.css">
 
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4293684626558852" crossorigin="anonymous"></script>
+
+  <style>
+    .important {
+      background-color: transparent !important;
+    }
+  </style>
   <script src="/main.js" defer></script>
-  <script src="/tracking.js"></script>
-  
+  <script src="/tracking.js" defer></script>
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const query = window.location.search;
-      const queryParam = query.substring(1);  // Get the query parameter
-      const titleText = queryParam;
-
-
+      const queryParam = query.substring(1);
       console.log("Query Param:", queryParam);
 
-      // Check if there is a query parameter
       if (!queryParam) {
         console.error("No query parameter found.");
         return;
       }
 
-      // Assuming pagesData is already available and contains the data for each game
       const pageEntry = pagesData.find(page => page.name === queryParam);
 
       if (pageEntry) {
         const gameContainer = document.getElementById("game-container");
-        const titlebarContainer = document.getElementById("titlebar-container");
 
-        // Check if description exists
         let description = pageEntry.description;
         console.log("Description:", description);
 
-        // Set a fallback description if none exists
         if (!description) {
           console.log("No description found!");
           description = "No description available.";
         }
 
-       
-        // Add the appropriate content to game container
         if (pageEntry.fileType === "html") {
-          // Add an iframe for HTML games
           console.log("Attempting to add HTML game...");
           const gameIframe = document.createElement("iframe");
           gameIframe.id = "game-iframe";
@@ -52,13 +49,9 @@
           gameIframe.width = "800";
           gameIframe.height = "600";
           gameIframe.frameBorder = "0";
-
-          // Append iframe inside #game-container
           gameContainer.appendChild(gameIframe);
           console.log("HTML game added successfully.");
-
         } else if (pageEntry.fileType === "flash" || pageEntry.fileType === "swf") {
-          // Add an SWF embed for Flash games
           console.log("Attempting to add Flash game...");
           const flashEmbed = document.createElement("embed");
           flashEmbed.id = "game-iframe";
@@ -66,8 +59,6 @@
           flashEmbed.width = "800";
           flashEmbed.height = "600";
           flashEmbed.frameBorder = "0";
-
-          // Append embed inside #game-container
           gameContainer.appendChild(flashEmbed);
           console.log("Flash game added successfully.");
         }
@@ -79,71 +70,114 @@
     });
   </script>
 </head>
-
 <body>
   <div id="navbar-container"></div>
   <div class="navbar-spacer"></div>
 
-
-
-  <div id="poll-banner">
-    <button id="poll-button" style="width: fit-content; background-color: black; border: 2px solid var(--background-color-text) !important; color: var(--background-color-text) !important;" data-poll-id="0004" data-poll-link="https://docs.google.com/forms/d/e/1FAIpQLSegRHcNKE68OOLd09AV2C1ZRPxFzd-WiDLN6GqiZBkDhiG9lQ/viewform?usp=dialog">Do the Poll please please do the poll! please?</button>
+  <!-- Horizontal Ad -->
+  <div class="important" style="width:100%;text-align:center;margin:16px 0;max-width: 900px;max-height: 120px;margin-left:auto;margin-right:auto;">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-4293684626558852"
+         data-ad-slot="9588548509"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
   </div>
-  
+
   <script>
+    // Poll logic
     const button = document.getElementById("poll-button");
     const pollKey = "Weekly Poll";
-  
+
     function getStoredPolls() {
-      return (localStorage.getItem(pollKey) || "").split("\n");
+      return (localStorage.getItem(pollKey) || "").split("\n").filter(Boolean);
     }
-  
+
     function hasVoted(pollId) {
       return getStoredPolls().includes(pollId);
     }
-  
+
     function storePoll(pollId) {
       const polls = getStoredPolls();
-      polls.push(pollId);
-      localStorage.setItem(pollKey, polls.join("\n"));
+      if (!polls.includes(pollId)) {
+        polls.push(pollId);
+        localStorage.setItem(pollKey, polls.join("\n"));
+      }
     }
-  
+
     const pollId = button.getAttribute("data-poll-id");
     const pollLink = button.getAttribute("data-poll-link");
-  
+
     if (hasVoted(pollId)) {
       button.style.display = "none";
     }
-  
+
     button.addEventListener("click", () => {
       storePoll(pollId);
       button.style.display = "none";
       window.open(pollLink, "_blank");
     });
   </script>
-  
 
-  <div class="important"
-    style="position: absolute; left: 1%; top: 175px; width: 10%; height: 78%; max-width: 140px; max-height: 564px; background-color: rgba(0,0,0,0);">
-    <!-- Original ad code -->
-    <script defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4293684626558852"
-      crossorigin="anonymous"></script>
-    <ins class="adsbygoogle" style="display: inline-block; width: 140px; height: 564px"
-      data-ad-client="ca-pub-4293684626558852" data-ad-slot="6738911587"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  <!-- Left Ad Container -->
+  <div class="important" style="position: absolute; left: 1%; top: 175px; width: 10%; max-width: 140px; max-height: 564px; background-color: rgba(0,0,0,0);">
+    <ins class="adsbygoogle"
+         style="display: inline-block; width: 140px; height: 564px"
+         data-ad-client="ca-pub-4293684626558852"
+         data-ad-slot="6738911587"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
   </div>
-  <div class="important"
-  style="position: absolute; right: 1%; top: 175px; width: 10%; height: 78%; max-width: 140px; max-height: 564px; background-color: rgba(0,0,0,0.0);">
-  <!-- Original ad code -->
-  <script defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4293684626558852"
-    crossorigin="anonymous"></script>
-  <ins class="adsbygoogle" style="display: inline-block; width: 140px; height: 564px"
-    data-ad-client="ca-pub-4293684626558852" data-ad-slot="6738911587"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
+
+  <!-- Right Ad Container -->
+  <div class="important" style="position: absolute; right: 1%; top: 175px; width: 10%; max-width: 140px; max-height: 564px; background-color: rgba(0,0,0,0);">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-4293684626558852"
+         data-ad-slot="7218370186"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <!-- Lower Left Ad Container -->
+  <div class="important" style="position: absolute; left: 1%; top: calc(175px + 570px); width: 10%; max-width: 140px; max-height: 564px; background-color: rgba(0,0,0,0);">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-4293684626558852"
+         data-ad-slot="7218370186"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <!-- Lower Right Ad Container -->
+  <div class="important" style="position: absolute; right: 1%; top: calc(175px + 570px); width: 10%; max-width: 140px; max-height: 564px; background-color: rgba(0,0,0,0);">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-4293684626558852"
+         data-ad-slot="7218370186"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
   <!-- Game container where the iframe or SWF will be inserted -->
   <div id="game-container">
     <div id="titlebar-container"></div>
+  </div>
+    <div id="poll-banner">
+    <button id="poll-button" style="width: fit-content; background-color: black; border: 2px solid var(--background-color-text) !important; color: var(--background-color-text) !important;" data-poll-id="0004" data-poll-link="https://docs.google.com/forms/d/e/1FAIpQLSegRHcNKE68OOLd09AV2C1ZRPxFzd-WiDLN6GqiZBkDhiG9lQ/viewform?usp=dialog">Do the coolubg Poll please please do the poll! please?</button>
   </div>
 
   <!-- Description container for showing game description -->
@@ -154,7 +188,5 @@
   <script src="/js/games-info.js"></script>
   <script src="/js/related-games.js"></script>
   <script src="/js/playtime.js"></script>
-
 </body>
-
 </html>

@@ -502,7 +502,7 @@
         Last Update:
         <a href="/changelog.html">30/06/2025</a>
         <br>
-        9 New Games!<br>
+        44 New Games!<br>
       </p>
     </div>
 
@@ -595,155 +595,151 @@
   </div>
 
   <style>
-    /* Container style */
-    .news-container {
-      display: flex;
-      justify-content: center;
-      /* Center the sections horizontally */
-      align-items: stretch;
-      /* Ensure both sections stretch equally */
-      background-color: transparent;
-      color: var(--secondary-color);
-      margin: 0 auto;
-      /* Center the container within its parent */
-      width: 71.6vw;
-      /* Set container width */
-      height: 22vw;
-      /* Use vw instead of vh for consistent scaling */
-      font-family: 'Nunito', sans-serif;
-      font-weight: bold;
-      box-sizing: border-box;
-      /* Include padding and border in the size */
-      overflow: hidden;
-      /* Prevent overflow */
-    }
+   /* Container style */
+.news-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  background-color: transparent;
+  color: var(--secondary-color);
+  margin: 0 auto;
+  width: 71.6vw;
+  height: 22vw;
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  box-sizing: border-box;
+  overflow: hidden;
+}
 
-    /* Section styles */
-    .left-section,
-    .right-section {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      background-color: var(--secondary-color);
-      border: 0.4vw solid var(--secondary-color-dark);
-      /* Use darkened color */
-      padding: 2vw;
-      /* Use vw for padding */
-      box-sizing: border-box;
-      flex: 1;
-      overflow: hidden;
-      max-height: 100%;
-    }
+/* Section styles */
+.left-section,
+.right-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: var(--secondary-color);
+  border: 0.4vw solid var(--secondary-color-dark);
+  padding: 2vw;
+  box-sizing: border-box;
+  flex: 1;
+  overflow: hidden;
+  max-height: 100%;
+}
 
-    /* Overlapping sections */
-    .left-section {
-      margin-right: -0.2vw;
-      /* Move the left section to the right */
-      border-top-left-radius: 0.5vw;
-      /* Rounded corners */
-      border-bottom-left-radius: 0.5vw;
-    }
+.left-section {
+  margin-right: -0.2vw;
+  border-top-left-radius: 0.5vw;
+  border-bottom-left-radius: 0.5vw;
+}
 
-    .right-section {
-      margin-left: -0.2vw;
-      /* Move the right section to the left */
-      border-top-right-radius: 0.5vw;
-      /* Rounded corners */
-      border-bottom-right-radius: 0.5vw;
-    }
+.right-section {
+  margin-left: -0.2vw;
+  border-top-right-radius: 0.5vw;
+  border-bottom-right-radius: 0.5vw;
+}
 
-    /* Buttons container */
-    .buttons {
-      margin-top: -1vw;
-      display: flex;
-      justify-content: space-evenly;
-      /* Space buttons evenly */
-      width: 100%;
-      /* Full width for button alignment */
-      margin-bottom: 1vw;
-      /* Use vw for spacing */
-      flex-shrink: 0;
-      /* Prevent buttons from shrinking */
-      align-items: center;
-      /* Ensure buttons align vertically */
-    }
+/* Buttons container */
+.buttons {
+  margin-top: -1vw;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-bottom: 1vw;
+  flex-shrink: 0;
+  align-items: center;
+}
 
-    /* GitHub button style */
-    .github-btn {
-      font-size: 1.8vw;
-      /* Scaled font size */
-      font-family: 'League Gothic', sans-serif;
-      background-color: var(--secondary-color);
-      padding: 0.5vw 1vw;
-      /* Responsive padding */
-      /* Rounded corners */
-      color: var(--primary-color);
-      font-weight: normal;
-      outline: var(--primary-color) solid 4px;
-      /* Consistent outline */
-      border: none;
-      cursor: pointer;
-      white-space: nowrap;
-      /* Prevent text wrapping */
-      text-align: center;
-      flex: 1;
-      /* Allow buttons to grow evenly within the container */
-      max-width: 15vw;
-      /* Prevent buttons from being too wide */
-      min-width: 10vw;
-      /* Ensure buttons don’t shrink too small */
-      aspect-ratio: 4 / 1;
-      /* Keep consistent height-to-width ratio */
-      box-sizing: border-box;
-      /* Include padding and border in size */
-    }
+/* Improved button style */
+.github-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2vw;
+  font-family: 'League Gothic', 'Nunito', sans-serif;
+  background-color: var(--secondary-color);
+  padding: 0.8vw 2vw;
+  border-radius: 0.6vw;
+  color: var(--primary-color);
+  font-weight: normal;
+  outline: var(--primary-color) solid 0.22vw;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  text-align: center;
+  max-width: 15vw;
+  min-width: 10vw;
+  min-height: 3.5vw;
+  line-height: 1;
+  box-sizing: border-box;
+  transition: background-color 0.15s, color 0.15s;
+  margin: 0 0.4vw;
+  box-shadow: 0 0.2vw 0.4vw rgba(0,0,0,0.09);
+}
 
-    /* Make buttons responsive to surrounding elements and screen size */
-    .github-btn:focus,
-    .github-btn:hover {
-      background-color: var(--primary-color);
-      color: var(--secondary-color);
-      /* Subtle hover effect */
-      transition: background-color 0.15s ease-out;
-    }
+.github-btn:focus,
+.github-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
 
+/* Responsive for smaller screens */
+@media (max-width: 900px) {
+  .github-btn {
+    font-size: 4vw;
+    padding: 1.5vw 3vw;
+    min-height: 7vw;
+    min-width: 28vw;
+    max-width: 60vw;
+  }
+}
 
-    /* Style for the text below buttons */
-    .section-text {
-      margin: 0;
-      /* Remove unnecessary margins */
-      font-size: 1.7vw;
-      /* Way smaller font size */
-      color: var(--primary-color);
-      /* Text color */
-      text-align: center;
-      /* Center the text */
-      width: 100%;
-      /* Ensure the text spans the width of the section */
-      overflow: hidden;
-      /* Prevent text overflow */
-      text-overflow: ellipsis;
-      /* Add ellipsis if text overflows */
-      flex-grow: 1;
-      /* Allow text to expand and fill remaining space */
-    }
+/* Section text below buttons */
+.section-text {
+  margin: 0;
+  font-size: 1.7vw;
+  color: var(--primary-color);
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+}
 
-    .section-text a {
-      margin: 0;
-      /* Remove unnecessary margins */
-      text-decoration: underline !important;
-      font-size: 1.7vw;
-      /* Way smaller font size */
-      color: var(--primary-color);
-      /* Text color */
-      text-align: center;
-      /* Center the text */
-      overflow: hidden;
-      /* Prevent text overflow */
-      text-overflow: ellipsis;
-      /* Add ellipsis if text overflows */
-    }
+.section-text a {
+  margin: 0;
+  text-decoration: underline !important;
+  font-size: 1.7vw;
+  color: var(--primary-color);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Custom checkbox tweaks */
+#toggleCheckbox {
+  background-color: var(--secondary-color);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 1.7vw;
+  height: 1.7vw;
+  margin-right: 10px;
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+}
+
+#toggleCheckbox:checked::before {
+  content: "✓";
+  color: var(--primary-color);
+  font-size: 1.7vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
   </style>
 
 
@@ -830,6 +826,19 @@
   </div>
   <script src="/js/list/online-list.js">generatePageListONLINE();</script>
   <br>
+
+  <!-- Horizontal Ad -->
+  <div class="important" style="width:100%;text-align:center;margin:16px 0;max-width: 900px;max-height: 120px;margin-left:auto;margin-right:auto;">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-4293684626558852"
+         data-ad-slot="9588548509"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
   <div class="sortButtonDiv" id="AllGamesDiv"
     style="display: flex; align-items: flex-start; gap: 0; padding-top: 15px;">
     <!-- Sort Dropdown -->

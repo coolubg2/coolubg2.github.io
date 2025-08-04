@@ -3,197 +3,232 @@ document.addEventListener('DOMContentLoaded', function () {
     const STORE_NAME = "playtimeLogs";
     const DB_VERSION = 1;
 
+    // Get page name from URL
     const currentPageURL = window.location.search;
     const pageName = currentPageURL.split('?')[1];
 
-    if (pageName) {
-        const pageEntry = pagesData.find(page => page.name === pageName);
+    if (!pageName) {
+        console.error('Could not extract page name from URL');
+        return;
+    }
 
-        const name = pageEntry?.formatted_Name || pageName;
+    // Find game/page entry
+    const pageEntry = pagesData.find(page => page.name === pageName);
+    if (!pageEntry) {
+        console.error('Could not find page entry for: ' + pageName);
+        return;
+    }
 
-        // Set dynamic page title
-        document.title = name + " - CoolUBG | Cool Unblocked Games";
-        
-        var description = pageEntry.description;
+    // Prepare data
+    const name = pageEntry.formatted_Name || pageName;
+    const description = pageEntry.description || "";
+    const categories = Array.isArray(pageEntry.category) ? pageEntry.category : ["None"];
+    const categoryHTML = categories.join(", ");
+    const date = pageEntry.date || "";
+    const formattedDate = date ? formatDate(date) : "Unknown";
+    const releaseDate = pageEntry.release_Date || "";
+    const formattedRelease = releaseDate ? formatDate(releaseDate) : "Unknown";
+    const updateDate = pageEntry.update_Date || "";
+    const formattedUpdate = updateDate ? formatDate(updateDate) : null;
+    const lastUpdateLine = formattedUpdate ? `Last Update: ${formattedUpdate}<br>` : '';
+    const authors = Array.isArray(pageEntry.authors) ? pageEntry.authors : [];
+    const authorLinks = Array.isArray(pageEntry.authorLinks) ? pageEntry.authorLinks : [];
+    const authorHTML = authors.map((author, i) => `<a href="${authorLinks[i] || "#"}" target="_blank">${author}</a>`).join(",<br>");
 
-        const categories = pageEntry?.category || ["None"];
-        const categoryHTML = categories.join(", "); 
-                
-        const date = pageEntry?.date || null;
-        const formattedDate = date ? formatDate(date) : "Unknown";
-        const releaseDate = pageEntry?.release_Date || null;
-        const formattedRelease = releaseDate ? formatDate(releaseDate) : "Unknown";
-        const updateDate = pageEntry?.update_Date || null;
-        const formattedUpdate = updateDate ? formatDate(updateDate) : null;
+    // Set page title
+    document.title = `${name} - CoolUBG | Cool Unblocked Games`;
 
-        const lastUpdateLine = formattedUpdate ? `Last Update: ${formattedUpdate}<br>` : '';
+    // Playtime
+    const playtimeShow = localStorage.getItem('playtime-log');
+    const showPlaytime = playtimeShow && playtimeShow.includes("playtime-show");
 
-        // Check if the playtime display should be shown
-        const playtimeShow = localStorage.getItem('playtime-log');
-        const showPlaytime = playtimeShow && playtimeShow.includes("playtime-show");
+    // Build HTML
+    let descriptionHTML = `
+        <div class="description description-left">
+            <div class="description-head">
+                <h2>Credits and Info</h2>
+            </div>
+            <p>
+                ${name}<br>
+                Tags: ${categoryHTML}<br><br>
+                By ${authorHTML}<br><br>
+                Date Added: ${formattedDate}<br>
+                ${lastUpdateLine}
+                Release Date: ${formattedRelease}<br>
+    `;
 
-        const authors = pageEntry?.authors || [];
-        const authorLinks = pageEntry?.authorLinks || [];
-        
-        const authorHTML = authors.map((author, index) => 
-            `<a href="${authorLinks[index] || '#'}" target="_blank">${author}</a>`
-          ).join(",<br>"); // Join authors with a <br> after each
-          
-        let descriptionHTML = `
-            <div class="description description-left">
-                <div class="description-head">
-                    <h2>Credits and Info</h2>
-                </div>
-                <p>
-                    ${name}<br>
-                    Tags: ${categoryHTML}<br><br>           
-                    By ${authorHTML}<br><br>
-                    Date Added: ${formattedDate}<br>
-                    ${lastUpdateLine}
-                    Release Date: ${formattedRelease}<br>
-        `;
-
-        // If playtime should be shown, add it directly into the same paragraph
-        if (showPlaytime) {
-            descriptionHTML += `
-                <br>Total Playtime: <span id="totalPlaytime">Loading...</span><br>
-                <span id="lastPlayedLine">Last Played: Loading...</span>
-            `;
-        }
-
+    if (showPlaytime) {
         descriptionHTML += `
-                </p>
-            </div>
-
-            <div class="description description-right">
-                <div class="description-head">
-                    <h2>Description and Overview</h2>
-                </div>
-                <p>
-                    ${description}<br><br>
-                    ${releaseDate.match(/-/g)?.length === 2 ? `${name} was released on the ${formattedRelease} and was created by ${authors.join(', ')}.` : ''}
-                </p>
-            </div>
-
-            <div class="description description-bottom">
-                <div class="description-head">
-                    <h2>Related Games</h2>
-                </div>
-                <div id="relatedGamesContainer"></div>
-            </div>
-            
-            <div class="description description-bottom2">
-                <div class="description-head">
-                    <h2>Games by the Same Author</h2>
-                </div>
-            <div id="authorRelatedGamesContainer"></div>
-            </div>
+            <br>Total Playtime: <span id="totalPlaytime">Loading...</span><br>
+            <span id="lastPlayedLine">Last Played: Loading...</span>
         `;
+    }
 
-        document.getElementById('description-container').innerHTML = descriptionHTML;
+    descriptionHTML += `
+            </p>
+        </div>
+        <div class="description description-right">
+            <div class="description-head">
+                <h2>Description and Overview</h2>
+            </div>
+            <p>
+                ${description}<br><br>
+                ${getReleaseSentence(releaseDate, name, authors)}
+            </p>
+        </div>
+        <div class="description description-bottom">
+            <div class="description-head">
+                <h2>Related Games</h2>
+            </div>
+            <div id="relatedGamesContainer"></div>
+        </div>
+        <div class="description description-bottom2">
+            <div class="description-head">
+                <h2>Games by the Same Author</h2>
+            </div>
+            <div id="authorRelatedGamesContainer"></div>
+        </div>
+    `;
 
-        // Initialize IndexedDB and fetch playtime stats if needed
-        if (showPlaytime) {
-            let db;
-            const openRequest = indexedDB.open(DB_NAME, DB_VERSION);
+    document.getElementById('description-container').innerHTML = descriptionHTML;
 
-            openRequest.onupgradeneeded = function(event) {
-                db = event.target.result;
-                if (!db.objectStoreNames.contains(STORE_NAME)) {
-                    db.createObjectStore(STORE_NAME, { keyPath: "gameId" });
-                }
-            };
+    // Playtime DB logic
+    if (showPlaytime) {
+        let db;
+        const openRequest = indexedDB.open(DB_NAME, DB_VERSION);
 
-            openRequest.onsuccess = function(event) {
-                db = event.target.result;
-                fetchPlaytimeStats(pageName); // Fetch stats once the DB is open
-            };
-
-            openRequest.onerror = function(event) {
-                console.error("Error opening IndexedDB:", event.target.error);
-            };
-
-            function fetchPlaytimeStats(pageName) {
-                const transaction = db.transaction(STORE_NAME, "readonly");
-                const store = transaction.objectStore(STORE_NAME);
-                const request = store.get(pageName);
-
-                request.onsuccess = function(event) {
-                    const playtimeData = event.target.result;
-
-                    if (playtimeData && playtimeData.logs) {
-                        const playtimeStats = calculatePlaytimeStatsFromLogs(playtimeData.logs);
-                        updatePlaytimeDisplay(playtimeStats);
-                    } else {
-                        updatePlaytimeDisplay({ minutesPlayed: "Never Played", lastPlayed: "Unknown" });
-                    }
-                };
-
-                request.onerror = function(event) {
-                    console.error("Error fetching playtime data:", event.target.error);
-                };
+        openRequest.onupgradeneeded = function(event) {
+            db = event.target.result;
+            if (!db.objectStoreNames.contains(STORE_NAME)) {
+                db.createObjectStore(STORE_NAME, { keyPath: "gameId" });
             }
+        };
 
-            function calculatePlaytimeStatsFromLogs(logs) {
-                const minutesPlayed = logs.length;
-                const firstPlayed = logs[0];
-                const lastPlayed = logs[logs.length - 1];
+        openRequest.onsuccess = function(event) {
+            db = event.target.result;
+            fetchPlaytimeStats(pageName);
+        };
 
-                return {
-                    minutesPlayed: formatPlaytime(minutesPlayed),
-                    firstPlayed: firstPlayed,
-                    lastPlayed: lastPlayed
-                };
-            }
+        openRequest.onerror = function(event) {
+            console.error("Error opening IndexedDB:", event.target.error);
+        };
 
-            function updatePlaytimeDisplay(playtimeStats) {
-                document.getElementById('totalPlaytime').textContent = playtimeStats.minutesPlayed;
-                const lastPlayedLine = document.getElementById('lastPlayedLine');
-                lastPlayedLine.textContent = `Last Played: ${playtimeStats.lastPlayed}`;
-                if (playtimeStats.minutesPlayed === "Never Played") {
-                    lastPlayedLine.style.display = 'none';
+        function fetchPlaytimeStats(pageName) {
+            const transaction = db.transaction(STORE_NAME, "readonly");
+            const store = transaction.objectStore(STORE_NAME);
+            const request = store.get(pageName);
+
+            request.onsuccess = function(event) {
+                const playtimeData = event.target.result;
+
+                if (playtimeData && playtimeData.logs) {
+                    const playtimeStats = calculatePlaytimeStatsFromLogs(playtimeData.logs);
+                    updatePlaytimeDisplay(playtimeStats);
                 } else {
-                    lastPlayedLine.style.display = 'block';
+                    updatePlaytimeDisplay({ minutesPlayed: "Never Played", lastPlayed: "Unknown" });
                 }
-            }
+            };
 
-            function formatPlaytime(minutes) {
-                if (minutes === 1) return "1 minute";
-                if (minutes <= 120) return `${minutes} minutes`;
+            request.onerror = function(event) {
+                console.error("Error fetching playtime data:", event.target.error);
+            };
+        }
 
-                const hours = (minutes / 60).toFixed(1);
-                return `${hours} hours`;
+        function calculatePlaytimeStatsFromLogs(logs) {
+            const minutesPlayed = logs.length;
+            const firstPlayed = logs[0];
+            const lastPlayed = logs[logs.length - 1];
+
+            return {
+                minutesPlayed: formatPlaytime(minutesPlayed),
+                firstPlayed: firstPlayed,
+                lastPlayed: lastPlayed
+            };
+        }
+
+        function updatePlaytimeDisplay(playtimeStats) {
+            document.getElementById('totalPlaytime').textContent = playtimeStats.minutesPlayed;
+            const lastPlayedLine = document.getElementById('lastPlayedLine');
+            lastPlayedLine.textContent = `Last Played: ${playtimeStats.lastPlayed}`;
+            if (playtimeStats.minutesPlayed === "Never Played") {
+                lastPlayedLine.style.display = 'none';
+            } else {
+                lastPlayedLine.style.display = 'block';
             }
         }
-        function formatDate(date) {
-            if (!date || date.trim() === '') return 'Unknown';
-            if (!date.includes('-')) return date;
-            if (date.split('-').length === 2) {
-                const [month, year] = date.split('-');
-                const monthNames = [
-                    'January', 'February', 'March', 'April', 'May', 'June', 'July',
-                    'August', 'September', 'October', 'November', 'December'
-                ];
-                return `${monthNames[parseInt(month) - 1]} ${year}`;
-            }
+
+        function formatPlaytime(minutes) {
+            if (minutes === 1) return "1 minute";
+            if (minutes <= 120) return `${minutes} minutes`;
+            const hours = (minutes / 60).toFixed(1);
+            return `${hours} hours`;
+        }
+    }
+
+    // === Helpers ===
+
+    function formatDate(date) {
+        if (!date || date.trim() === '') return 'Unknown';
+        if (/^\d{4}$/.test(date.trim())) {
+            // Year only
+            return date.trim();
+        }
+        if (/^\d{1,2}-\d{4}$/.test(date.trim())) {
+            // MM-YYYY
+            const [month, year] = date.split('-');
+            const monthNames = [
+                'January', 'February', 'March', 'April', 'May', 'June', 'July',
+                'August', 'September', 'October', 'November', 'December'
+            ];
+            return `${monthNames[parseInt(month, 10) - 1]} ${year}`;
+        }
+        if (/^\d{1,2}-\d{1,2}-\d{4}$/.test(date.trim())) {
+            // DD-MM-YYYY
             const [day, month, year] = date.split('-');
             const monthNames = [
                 'January', 'February', 'March', 'April', 'May', 'June', 'July',
                 'August', 'September', 'October', 'November', 'December'
             ];
-            return `${getDayWithSuffix(parseInt(day))} of ${monthNames[parseInt(month) - 1]} ${year}`;
+            return `${getDayWithSuffix(parseInt(day, 10))} of ${monthNames[parseInt(month, 10) - 1]} ${year}`;
         }
-        
-        function getDayWithSuffix(day) {
-            if (day > 3 && day < 21) return day + 'th';
-            switch (day % 10) {
-                case 1: return day + 'st';
-                case 2: return day + 'nd';
-                case 3: return day + 'rd';
-                default: return day + 'th';
-            }
-        }        
-    } else {
-        console.error('Could not extract page name from URL');
+        return date;
+    }
+
+    function getDayWithSuffix(day) {
+        if (day > 3 && day < 21) return day + 'th';
+        switch (day % 10) {
+            case 1: return day + 'st';
+            case 2: return day + 'nd';
+            case 3: return day + 'rd';
+            default: return day + 'th';
+        }
+    }
+
+    function getReleaseSentence(releaseDate, name, authors) {
+        if (!releaseDate || !releaseDate.trim()) return '';
+        const monthNames = [
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+
+        // DD-MM-YYYY
+        if (/^\d{1,2}-\d{1,2}-\d{4}$/.test(releaseDate)) {
+            const [day, month, year] = releaseDate.split('-').map(Number);
+            const dayWithSuffix = getDayWithSuffix(day);
+            const monthName = monthNames[month - 1];
+            return `${name} was released on the ${dayWithSuffix} of ${monthName} ${year} and was created by ${authors.join(', ')}.`;
+        }
+        // MM-YYYY
+        if (/^\d{1,2}-\d{4}$/.test(releaseDate)) {
+            const [month, year] = releaseDate.split('-').map(Number);
+            const monthName = monthNames[month - 1];
+            return `${name} was released in ${monthName} ${year} and was created by ${authors.join(', ')}.`;
+        }
+        // YYYY
+        if (/^\d{4}$/.test(releaseDate.trim())) {
+            return `${name} was released in ${releaseDate.trim()} and was created by ${authors.join(', ')}.`;
+        }
+        // Fallback
+        return `${name} was released (${releaseDate}) and was created by ${authors.join(', ')}.`;
     }
 });
