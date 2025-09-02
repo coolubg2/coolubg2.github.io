@@ -87,41 +87,6 @@
     </script>
   </div>
 
-  <script>
-    // Poll logic
-    const button = document.getElementById("poll-button");
-    const pollKey = "Weekly Poll";
-
-    function getStoredPolls() {
-      return (localStorage.getItem(pollKey) || "").split("\n").filter(Boolean);
-    }
-
-    function hasVoted(pollId) {
-      return getStoredPolls().includes(pollId);
-    }
-
-    function storePoll(pollId) {
-      const polls = getStoredPolls();
-      if (!polls.includes(pollId)) {
-        polls.push(pollId);
-        localStorage.setItem(pollKey, polls.join("\n"));
-      }
-    }
-
-    const pollId = button.getAttribute("data-poll-id");
-    const pollLink = button.getAttribute("data-poll-link");
-
-    if (hasVoted(pollId)) {
-      button.style.display = "none";
-    }
-
-    button.addEventListener("click", () => {
-      storePoll(pollId);
-      button.style.display = "none";
-      window.open(pollLink, "_blank");
-    });
-  </script>
-
   <!-- Left Ad Container -->
   <div class="important" style="position: absolute; left: 1%; top: 175px; width: 10%; max-width: 140px; max-height: 564px; background-color: rgba(0,0,0,0);">
     <ins class="adsbygoogle"
@@ -188,5 +153,43 @@
   <script src="/js/games-info.js"></script>
   <script src="/js/related-games.js"></script>
   <script src="/js/playtime.js"></script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const button = document.getElementById("poll-button");
+    const pollKey = "Weekly Poll";
+
+    if (!button) return;
+
+    function getStoredPolls() {
+      return (localStorage.getItem(pollKey) || "").split("\n").filter(Boolean);
+    }
+
+    function hasVoted(pollId) {
+      return getStoredPolls().includes(pollId);
+    }
+
+    function storePoll(pollId) {
+      const polls = getStoredPolls();
+      if (!polls.includes(pollId)) {
+        polls.push(pollId);
+        localStorage.setItem(pollKey, polls.join("\n"));
+      }
+    }
+
+    const pollId = button.getAttribute("data-poll-id");
+    const pollLink = button.getAttribute("data-poll-link");
+
+    if (hasVoted(pollId)) {
+      button.style.display = "none";
+    }
+
+    button.addEventListener("click", () => {
+      storePoll(pollId);
+      button.style.display = "none";
+      window.open(pollLink, "_blank");
+    });
+  });
+</script>
 </body>
 </html>
