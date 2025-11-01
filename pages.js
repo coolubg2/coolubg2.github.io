@@ -3097,4 +3097,62 @@ const pagesData = [
     authorLinks: ["https://www.disney.com.au/"],
     description: "Japan"
   },
+
+  //01/11/2025
+
+  {
+    name: "echovally",
+    formatted_Name: "echovally",
+    fileType: "html",
+    category: ["platformer", "school"],
+    date: "01-11-2025",
+    release_Date: "08-08-2025",
+    authors: ["Jamie"],
+    authorLinks: [""],
+    description: ""
+  },
+  {
+    name: "gauntlet-heist",
+    formatted_Name: "Gauntlet Heist",
+    fileType: "html",
+    category: ["bullet hell", "puzzle", "school"],
+    date: "01-11-2025",
+    release_Date: "08-08-2025",
+    authors: ["Hugo"],
+    authorLinks: [""],
+    description: ""
+  },
+  {
+    name: "vegetable-samurai",
+    formatted_Name: "Vegetable Samurai",
+    fileType: "html",
+    category: ["fruit ninja", "arcade", "school"],
+    date: "01-11-2025",
+    release_Date: "24-10-2025",
+    authors: ["Johnnie"],
+    authorLinks: [""],
+    description: ""
+  },
+  {
+    name: "angry-birds-hd-halloween",
+    formatted_Name: "Angry Birds Halloween HD",
+    fileType: "swf",
+    category: ["puzzle", "casual", "crush the castle"],
+    date: "01-11-2025",
+    release_Date: "21-10-2010",
+    authors: ["Rovio Entertainment Oy"],
+    authorLinks: ["https://www.rovio.com/"],
+    description: "angry birds but halloween"
+  },
+  {
+    name: "warthog-launch",
+    formatted_Name: "Warthog Launch",
+    fileType: "swf",
+    category: ["puzzle", "halo"],
+    date: "01-11-2025",
+    release_Date: "24-02-2004",
+    authors: ["BOLL"],
+    authorLinks: ["https://www.youtube.com/@BOLL7708"],
+    description: ""
+  },
 ];

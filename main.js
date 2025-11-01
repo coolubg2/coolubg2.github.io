@@ -497,9 +497,12 @@ function fullscreenFunction2() {
 
 function applyStoredSettings() {
     // Preset values
-    const presetBackgroundImage = '/images/backgrounds/background-blue-old.png';
-    const presetPrimaryColor = '#111E2C';
-    const presetSecondaryColor = '#58AAFC';
+    //const presetBackgroundImage = '/images/backgrounds/background-blue-old.png';
+    const presetBackgroundImage = '/images/backgrounds/halloween-2025.jpg';
+    //const presetPrimaryColor = '#111E2C';
+    const presetPrimaryColor = '#FA5500';
+    //const presetSecondaryColor = '#58AAFC';
+    const presetSecondaryColor = '#000000';
     const presetBackgroundRes = '100';
 
     // Get the "customisation" data from localStorage
