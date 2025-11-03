@@ -1,6 +1,8 @@
 User-agent: *
-Disallow: /coolubg-list
 
 Allow: /
 
 Sitemap: https://coolubg.github.io/sitemap.xml
+
+Disallow: /coolubg-list
+Disallow: /games/drive-mad.html
